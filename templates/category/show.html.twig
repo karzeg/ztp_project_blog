@@ -16,7 +16,7 @@
             <dd>
                 {% for post in category.posts %}
                     <a href="{{ url('post_show', {id: post.id}) }}" title="{{ 'post_show'|trans }}">
-                        {{ post.content }}
+                        {{ post.title }}
                     </a><br>
                 {%  endfor %}
             </dd>
