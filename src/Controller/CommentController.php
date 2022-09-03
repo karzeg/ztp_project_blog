@@ -7,7 +7,10 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\Post;
+use App\Entity\User;
+use App\Entity\UserData;
 use App\Form\Type\CommentType;
+use App\Repository\CommentRepository;
 use App\Service\CommentServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -56,22 +59,26 @@ class CommentController extends AbstractController
         name: 'comment_create',
         methods: 'GET|POST',
     )]
-    public function create(Request $request, Post $post): Response
+    public function create(Request $request, Post $post, CommentRepository $commentRepository): Response
     {
         $comment = new Comment();
-        $comment->setPost($post);
+        $id = $post->getId();
+        $author = $this->getUser();
+
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->commentService->save($comment);
+        if($form->isSubmitted() && $form->isValid()) {
+            $comment->setPost($post);
+            $comment->setAuthor($author);
+            $commentRepository->save($comment);
 
             $this->addFlash(
                 'success',
                 $this->translator->trans('message.created_successfully')
             );
 
-            return $this->redirectToRoute('post_show', ['id' => $post->getId()]);
+            return $this->redirectToRoute('post_show', ['id' => $id]);
         }
 
         return $this->render(

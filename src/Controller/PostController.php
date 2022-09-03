@@ -5,8 +5,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Post;
+use App\Entity\User;
+use App\Entity\UserData;
+use App\Form\Type\CommentType;
 use App\Form\Type\PostType;
+use App\Repository\CommentRepository;
 use App\Service\PostServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -79,11 +84,12 @@ class PostController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET',
     )]
-    public function show(Post $post): Response
+    public function show(Post $post, CommentRepository $commentRepository): Response
     {
         return $this->render(
             'post/show.html.twig',
             ['post' => $post]
+// $form->createView()]
         );
     }
 
