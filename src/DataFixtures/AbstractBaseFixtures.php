@@ -57,10 +57,10 @@ abstract class AbstractBaseFixtures extends Fixture
      * Create many objects at once:.
      *
      *      $this->createMany(10, function(int $i) {
-     *          $user = new User();
-     *          $user->setFirstName('Ryan');
+     *          $index.html.twig = new User();
+     *          $index.html.twig->setFirstName('Ryan');
      *
-     *           return $user;
+     *           return $index.html.twig;
      *      });
      *
      * @param int      $count     Number of object to create
