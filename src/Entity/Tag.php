@@ -6,6 +6,8 @@
 namespace App\Entity;
 
 use App\Repository\TagRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,6 +34,20 @@ class Tag
      */
     #[ORM\Column(type: 'string', length: 45)]
     private ?string $title = null;
+
+    /**
+     *
+     */
+    #[ORM\ManyToMany(targetEntity: Post::class, mappedBy: 'tags')]
+    private $posts;
+
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->posts = new ArrayCollection();
+    }
 
     /**
      * Getter for Id.
@@ -61,5 +77,25 @@ class Tag
     public function setTitle(?string $title): void
     {
         $this->title = $title;
+    }
+
+    /**
+     * Add post.
+     *
+     * @param Post $post Post entity
+     */
+    public function addPost(Post $post): void
+    {
+        if (!$this->posts->contains($post)) {
+            $this->posts[] = $post;
+        }
+    }
+
+    /**
+     * Remove post.
+     */
+    public function removePost(Post $post): void
+    {
+        $this->posts->removeElement($post);
     }
 }

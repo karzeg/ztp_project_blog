@@ -61,9 +61,8 @@ class Post
      * Category.
      *
      * @var Category
-     */
+     **/
     #[ORM\ManyToOne(targetEntity: Category::class)]
-    #[ORM\JoinColumn(nullable: false)]
     #[Assert\NotBlank]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category;
@@ -74,8 +73,8 @@ class Post
      * @var ArrayCollection<int, Tag>
      */
     #[Assert\Valid]
-    #[ORM\ManyToMany(targetEntity: Tag::class, fetch: 'EXTRA_LAZY', orphanRemoval: true)]
-    #[ORM\JoinTable(name: 'posts_tags')]
+    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'posts')]
+    #[ORM\JoinColumn(name: 'posts_tags')]
     private $tags;
 
     /**
@@ -143,6 +142,26 @@ class Post
     public function setContent(?string $content): void
     {
         $this->content = $content;
+    }
+
+    /**
+     * Getter for Title.
+     *
+     * @return string|null
+     */
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    /**
+     * Setter for Title.
+     *
+     * @param string $title
+     */
+    public function setTitle(string $title): void
+    {
+        $this->title = $title;
     }
 
     /**
@@ -229,18 +248,6 @@ class Post
                 $comment->setPost(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-    public function setTitle(string $title): self
-    {
-        $this->title = $title;
 
         return $this;
     }
