@@ -67,9 +67,9 @@ class PostType extends AbstractType
             'category',
             EntityType::class,
             [
-                'label' => 'label_category',
+                'label' => 'label.category',
                 'class' => "App\Entity\Category",
-                'placeholder' => 'label_category',
+                'placeholder' => 'label.category',
                 'choice_label' => 'title',
             ]
         );
