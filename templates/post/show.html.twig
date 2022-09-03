@@ -46,8 +46,10 @@
             <tbody>
             {% for comment in post.comments %}
                 <tr>
+
                     <td>{{ comment.date|date('d/m/Y') }}</td>
                     <td>{{ comment.content }}</td>
+                    <td>{{ comment.author.userData.login }}</td>
                 </tr>
             {% endfor %}
             </tbody>
