@@ -8,7 +8,7 @@ security:
 
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
-        # used to reload index.html.twig from session & other features (e.g. switch_user)
+        # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
                 class: App\Entity\User
@@ -41,8 +41,12 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
-#        - { path: ^/login, roles: PUBLIC_ACCESS}
-        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/login, roles: PUBLIC_ACCESS}
+        - { path: ^/post, roles: PUBLIC_ACCESS}
+        - { path: ^/category, roles: PUBLIC_ACCESS}
+        - { path: ^/tag, roles: PUBLIC_ACCESS}
+        - { path: ^/registration, roles: PUBLIC_ACCESS}
+        - { path: ^/, roles: ROLE_USER}
 
 when@test:
     security:
