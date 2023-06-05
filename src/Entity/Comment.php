@@ -10,8 +10,6 @@ use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 
 /**
  * Class Comment.
@@ -36,12 +34,16 @@ class Comment
      * @var string|null
      */
     #[ORM\Column(type: 'text')]
+    #[Assert\Type('string')]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 3, max: 65000)]
     private ?string $content = null;
 
     /**
      * @var DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
+    #[Assert\Type('DateTimeImmutable::class')]
     #[Gedmo\Timestampable(on: 'create')]
     private ?DateTimeImmutable $date;
 
@@ -108,9 +110,6 @@ class Comment
         $this->date = $date;
     }
 
-    /**
-     * @return Post|null
-     */
     public function getPost(): ?Post
     {
         return $this->post;
@@ -119,7 +118,6 @@ class Comment
     /**
      * Setter for Post.
      *
-     * @param Post|null $post
      * @return $this
      */
     public function setPost(?Post $post): self
@@ -129,11 +127,22 @@ class Comment
         return $this;
     }
 
+    /**
+     * Getter for User.
+     *
+     * @return User|null
+     */
     public function getAuthor(): ?User
     {
         return $this->author;
     }
 
+    /**
+     * Setter for Author.
+     *
+     * @param User|null $author
+     * @return $this
+     */
     public function setAuthor(?User $author): self
     {
         $this->author = $author;

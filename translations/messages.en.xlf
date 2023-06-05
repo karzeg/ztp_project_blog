@@ -186,6 +186,70 @@
         <source>label_tags</source>
         <target>Tags</target>
       </trans-unit>
+      <trans-unit id="title.comment_delete">
+        <source>title.comment_delete</source>
+        <target>Delete comment</target>
+      </trans-unit>
+      <trans-unit id="label_users">
+        <source>label_users</source>
+        <target>Users</target>
+      </trans-unit>
+      <trans-unit id="action_logout">
+        <source>action_logout</source>
+        <target>Log out</target>
+      </trans-unit>
+      <trans-unit id="action_login">
+        <source>action_login</source>
+        <target>Log in</target>
+      </trans-unit>
+      <trans-unit id="action_register">
+        <source>action_register</source>
+        <target>Register</target>
+      </trans-unit>
+      <trans-unit id="message.category_contains_tasks">
+        <source>message.category_contains_tasks</source>
+        <target>Category contains tasks</target>
+      </trans-unit>
+      <trans-unit id="message.password_edited_successfully">
+        <source>message.password_edited_successfully</source>
+        <target>Password edited successfully</target>
+      </trans-unit>
+      <trans-unit id="label_login">
+        <source>label_login</source>
+        <target>Login</target>
+      </trans-unit>
+      <trans-unit id="title.comment_edit">
+        <source>title.comment_edit</source>
+        <target>Edit comment</target>
+      </trans-unit>
+      <trans-unit id="title.change_password">
+        <source>title.change_password</source>
+        <target>Change password</target>
+      </trans-unit>
+      <trans-unit id="title.user_list">
+        <source>title.user_list</source>
+        <target>Users list</target>
+      </trans-unit>
+      <trans-unit id="title.user_create">
+        <source>title.user_create</source>
+        <target>Create user</target>
+      </trans-unit>
+      <trans-unit id="title.user_details">
+        <source>title.user_details</source>
+        <target>User's details</target>
+      </trans-unit>
+      <trans-unit id="label.email">
+        <source>label.email</source>
+        <target>E-mail</target>
+      </trans-unit>
+      <trans-unit id="label.login">
+        <source>label.login</source>
+        <target>Login</target>
+      </trans-unit>
+      <trans-unit id="action.change_password">
+        <source>action.change_password</source>
+        <target>Change password</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

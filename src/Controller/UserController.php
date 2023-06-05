@@ -9,6 +9,8 @@ use App\Entity\User;
 use App\Form\Type\ChangePasswordType;
 use App\Form\Type\UserType;
 use App\Service\UserServiceInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,7 +39,7 @@ class UserController extends AbstractController
      * Constructor.
      *
      * @param UserServiceInterface $userService User service
-     * @param TranslatorInterface      $translator      Translator
+     * @param TranslatorInterface  $translator  Translator
      */
     public function __construct(UserServiceInterface $userService, TranslatorInterface $translator)
     {
@@ -51,7 +53,9 @@ class UserController extends AbstractController
      * @param Request $request HTTP Request
      *
      * @return Response HTTP response
+     *
      */
+    #[IsGranted('ROLE_ADMIN')]
     #[Route(name: 'user_index', methods: 'GET')]
     public function index(Request $request): Response
     {
@@ -68,6 +72,7 @@ class UserController extends AbstractController
      * @param User $user User
      *
      * @return Response HTTP response
+     *
      */
     #[Route(
         '/{id}',
@@ -192,8 +197,8 @@ class UserController extends AbstractController
     /**
      * Change password action.
      *
-     * @param Request $request
-     * @param User $user
+     * @param Request                     $request
+     * @param User                        $user
      * @param UserPasswordHasherInterface $passwordHasher
      *
      * @return Response
@@ -206,8 +211,7 @@ class UserController extends AbstractController
             ]);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $user->setPassword($passwordHasher->hashPassword($user, $form->get('password')->getData()));
 
             $this->userService->save($user);
@@ -224,7 +228,7 @@ class UserController extends AbstractController
             'user/change_password.html.twig',
             [
                 'form' => $form->createView(),
-                'user' => $user
+                'user' => $user,
             ]
         );
     }

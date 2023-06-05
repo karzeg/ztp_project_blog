@@ -9,6 +9,7 @@ use App\Entity\Tag;
 use App\Form\Type\TagType;
 use App\Service\TagService;
 use App\Service\TagServiceInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -86,6 +87,7 @@ class TagController extends AbstractController
      *
      * @return Response HTTP response
      */
+    #[IsGranted('ROLE_ADMIN')]
     #[Route(
         '/create',
         name: 'tag_create',
@@ -122,10 +124,13 @@ class TagController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/{id}/edit',
+    #[IsGranted('ROLE_ADMIN')]
+    #[Route(
+        '/{id}/edit',
         name: 'tag_edit',
         requirements: ['id' => '[1-9]\d*'],
-        methods: 'GET|PUT')]
+        methods: 'GET|PUT'
+    )]
     public function edit(Request $request, Tag $tag): Response
     {
         $form = $this->createForm(TagType::class, $tag, [
@@ -162,10 +167,13 @@ class TagController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/{id}/delete',
+    #[IsGranted('ROLE_ADMIN')]
+    #[Route(
+        '/{id}/delete',
         name: 'tag_delete',
         requirements: ['id' => '[1-9]\d*'],
-        methods: 'GET|DELETE')]
+        methods: 'GET|DELETE'
+    )]
     public function delete(Request $request, Tag $tag): Response
     {
         $form = $this->createForm(FormType::class, $tag, [

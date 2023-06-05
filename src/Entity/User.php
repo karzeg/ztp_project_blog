@@ -25,14 +25,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * @var string
      */
-    const ROLE_USER = 'ROLE_USER';
+    public const ROLE_USER = 'ROLE_USER';
 
     /**
      * Role admin.
      *
      * @var string
      */
-    const ROLE_ADMIN = 'ROLE_ADMIN';
+    public const ROLE_ADMIN = 'ROLE_ADMIN';
 
     /**
      * Primary key.
@@ -52,6 +52,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     #[Assert\NotBlank]
     #[Assert\Email]
+    #[Assert\Length(min:5, max: 180)]
     private ?string $email;
 
     /**
@@ -71,9 +72,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotBlank]
     private ?string $password;
 
-    #[ORM\OneToOne(targetEntity: UserData::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private $userData;
+    /**
+     * Login.
+     *
+     * @var string|null
+     */
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $login = null;
 
     /**
      * Getter for id.
@@ -197,14 +202,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getUserData(): ?UserData
+    /**
+     * @return string|null
+     */
+    public function getLogin(): ?string
     {
-        return $this->userData;
+        return $this->login;
     }
 
-    public function setUserData(UserData $userData): self
+    /**
+     * @param string|null $login
+     * @return $this
+     */
+    public function setLogin(?string $login): self
     {
-        $this->userData = $userData;
+        $this->login = $login;
 
         return $this;
     }

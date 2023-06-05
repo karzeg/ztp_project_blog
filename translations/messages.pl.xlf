@@ -182,6 +182,70 @@
         <source>label_tags</source>
         <target>Tagi</target>
       </trans-unit>
+      <trans-unit id="title.comment_delete">
+        <source>title.comment_delete</source>
+        <target>Usuń komentarz</target>
+      </trans-unit>
+      <trans-unit id="label_users">
+        <source>label_users</source>
+        <target>Użytkownicy</target>
+      </trans-unit>
+      <trans-unit id="action_logout">
+        <source>action_logout</source>
+        <target>Wyloguj</target>
+      </trans-unit>
+      <trans-unit id="action_login">
+        <source>action_login</source>
+        <target>Logowanie</target>
+      </trans-unit>
+      <trans-unit id="action_register">
+        <source>action_register</source>
+        <target>Rejestracja</target>
+      </trans-unit>
+      <trans-unit id="message.category_contains_tasks">
+        <source>message.category_contains_tasks</source>
+        <target>Kategoria zawiera posty.</target>
+      </trans-unit>
+      <trans-unit id="message.password_edited_successfully">
+        <source>message.password_edited_successfully</source>
+        <target>Zmieniono hasło</target>
+      </trans-unit>
+      <trans-unit id="label_login">
+        <source>label_login</source>
+        <target>Logowanie</target>
+      </trans-unit>
+      <trans-unit id="title.comment_edit">
+        <source>title.comment_edit</source>
+        <target>Edytuj komentarz</target>
+      </trans-unit>
+      <trans-unit id="title.change_password">
+        <source>title.change_password</source>
+        <target>Zmień hasło</target>
+      </trans-unit>
+      <trans-unit id="title.user_list">
+        <source>title.user_list</source>
+        <target>Użytkownicy</target>
+      </trans-unit>
+      <trans-unit id="title.user_create">
+        <source>title.user_create</source>
+        <target>Stwórz użytkownika</target>
+      </trans-unit>
+      <trans-unit id="title.user_details">
+        <source>title.user_details</source>
+        <target>Szczegóły użytkownika</target>
+      </trans-unit>
+      <trans-unit id="label.email">
+        <source>label.email</source>
+        <target>E-mail</target>
+      </trans-unit>
+      <trans-unit id="label.login">
+        <source>label.login</source>
+        <target>Login</target>
+      </trans-unit>
+      <trans-unit id="action.change_password">
+        <source>action.change_password</source>
+        <target>Zmień hasło</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

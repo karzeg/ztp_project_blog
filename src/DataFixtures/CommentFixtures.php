@@ -25,11 +25,12 @@ class CommentFixtures extends AbstractBaseFixtures implements DependentFixtureIn
             return;
         }
 
-        $this->createMany(30, 'comments', function (int $i) {
+        $this->createMany(100, 'comments', function (int $i) {
             $comment = new Comment();
             $comment->setContent($this->faker->sentence);
             $comment->setDate(
-                DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days')));
+                DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days'))
+            );
 
             /** @var User @author */
             $author = $this->getRandomReference('users');
@@ -47,7 +48,6 @@ class CommentFixtures extends AbstractBaseFixtures implements DependentFixtureIn
 
     /**
      * @return string[] of dependencies
-     *
      */
     public function getDependencies(): array
     {

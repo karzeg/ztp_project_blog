@@ -6,9 +6,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Entity\UserData;
 use App\Form\Type\RegistrationType;
-use App\Repository\UserDataRepository;
 use App\Repository\UserRepository;
 use App\Security\LoginFormAuthenticator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -32,7 +30,7 @@ class RegistrationController extends AbstractController
     /**
      * Constructor.
      *
-     * @param TranslatorInterface     $translator     Translator
+     * @param TranslatorInterface $translator Translator
      */
     public function __construct(TranslatorInterface $translator)
     {
@@ -40,32 +38,29 @@ class RegistrationController extends AbstractController
     }
 
     /**
-     * @param Request $request
-     * @param UserRepository $userRepository
-     * @param UserDataRepository $userDataRepository
+     * @param Request                     $request
+     * @param UserRepository              $userRepository
      * @param UserPasswordHasherInterface $passwordHasher
-     * @param UserAuthenticatorInterface $userAuthenticator
-     * @param LoginFormAuthenticator $formAuthenticator
+     * @param UserAuthenticatorInterface  $userAuthenticator
+     * @param LoginFormAuthenticator      $formAuthenticator
      *
      * @return Response
      */
     #[Route(
         '/registration',
         name: 'app_register',
-        methods: 'GET|POST')]
-    public function register(Request $request, UserRepository $userRepository, UserDataRepository $userDataRepository, UserPasswordHasherInterface $passwordHasher, UserAuthenticatorInterface $userAuthenticator, LoginFormAuthenticator $formAuthenticator): Response
+        methods: 'GET|POST'
+    )]
+    public function register(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher, UserAuthenticatorInterface $userAuthenticator, LoginFormAuthenticator $formAuthenticator): Response
     {
         $user = new User();
-        $userData = new UserData();
         $form = $this->createForm(RegistrationType::class, $user);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $user->setPassword($passwordHasher->hashPassword($user, $form->get('password')->getData()));
             $user->setRoles([User::ROLE_USER]);
-            $user->setUserData($userData);
             $userRepository->save($user);
-            $userDataRepository->save($userData);
 
             $this->addFlash(
                 'success',

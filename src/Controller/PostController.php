@@ -5,14 +5,11 @@
 
 namespace App\Controller;
 
-use App\Entity\Comment;
 use App\Entity\Post;
-use App\Entity\User;
-use App\Entity\UserData;
-use App\Form\Type\CommentType;
 use App\Form\Type\PostType;
 use App\Repository\CommentRepository;
 use App\Service\PostServiceInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -99,7 +96,10 @@ class PostController extends AbstractController
      * @param Request $request HTTP request
      *
      * @return Response HTTP response
+     *
+     * @IsGranted("ROLE_ADMIN")
      */
+    #[IsGranted('ROLE_ADMIN')]
     #[Route(
         '/create',
         name: 'post_create',
@@ -135,11 +135,16 @@ class PostController extends AbstractController
      * @param Post    $post    Post entity
      *
      * @return Response HTTP response
+     *
+     * @IsGranted("ROLE_ADMIN")
      */
-    #[Route('/{id}/edit',
+    #[IsGranted('ROLE_ADMIN')]
+    #[Route(
+        '/{id}/edit',
         name: 'post_edit',
         requirements: ['id' => '[1-9]\d*'],
-        methods: 'GET|PUT')]
+        methods: 'GET|PUT'
+    )]
     public function edit(Request $request, Post $post): Response
     {
         $form = $this->createForm(PostType::class, $post, [
@@ -175,11 +180,16 @@ class PostController extends AbstractController
      * @param Post    $post    Post entity
      *
      * @return Response HTTP response
+     *
+     * @IsGranted("ROLE_ADMIN")
      */
-    #[Route('/{id}/delete',
+    #[IsGranted('ROLE_ADMIN')]
+    #[Route(
+        '/{id}/delete',
         name: 'post_delete',
         requirements: ['id' => '[1-9]\d*'],
-        methods: 'GET|DELETE')]
+        methods: 'GET|DELETE'
+    )]
     public function delete(Request $request, Post $post): Response
     {
         $form = $this->createForm(FormType::class, $post, [

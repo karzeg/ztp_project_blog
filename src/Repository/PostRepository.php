@@ -1,9 +1,13 @@
 <?php
+/**
+ * Post repository.
+ */
 
 namespace App\Repository;
 
 use App\Entity\Category;
 use App\Entity\Post;
+use App\Entity\Tag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
@@ -49,7 +53,8 @@ class PostRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            ->select('post', 'category')
+            ->select(
+                'partial post.{id, title, date}', 'partial category.{id, title}')
             ->join('post.category', 'category')
             ->orderBy('post.date', 'DESC');
     }
@@ -65,6 +70,31 @@ class PostRepository extends ServiceEntityRepository
     {
         return $queryBuilder ?? $this->createQueryBuilder('post');
     }
+
+    /**
+     * Save entity.
+     *
+     * @param Post $post Post entity
+     *
+     * @return void
+     */
+    public function save(Post $post): void
+    {
+        $this->_em->persist($post);
+        $this->_em->flush();
+    }
+
+    /**
+     * Delete entity.
+     *
+     * @param Post $post Post entity
+     */
+    public function delete(Post $post): void
+    {
+        $this->_em->remove($post);
+        $this->_em->flush();
+    }
+
 
     /**
      * Count posts by category.
@@ -85,46 +115,5 @@ class PostRepository extends ServiceEntityRepository
             ->setParameter(':category', $category)
             ->getQuery()
             ->getSingleScalarResult();
-    }
-
-    public function add(Post $entity, bool $flush = false): void
-    {
-        $this->getEntityManager()->persist($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
-    }
-
-    /***
-    public function remove(Post $entity, bool $flush = false): void
-    {
-        $this->getEntityManager()->remove($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
-    }
-
-    /**
-     * Save entity.
-     *
-     * @param Post $post Post entity
-     */
-    public function save(Post $post): void
-    {
-        $this->_em->persist($post);
-        $this->_em->flush();
-    }
-
-    /**
-     * Delete entity.
-     *
-     * @param Post $post Post entity
-     */
-    public function delete(Post $post): void
-    {
-        $this->_em->remove($post);
-        $this->_em->flush();
     }
 }

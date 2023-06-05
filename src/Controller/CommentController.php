@@ -8,10 +8,10 @@ namespace App\Controller;
 use App\Entity\Comment;
 use App\Entity\Post;
 use App\Entity\User;
-use App\Entity\UserData;
 use App\Form\Type\CommentType;
 use App\Repository\CommentRepository;
 use App\Service\CommentServiceInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,6 +51,7 @@ class CommentController extends AbstractController
      * Create action.
      *
      * @param Request $request HTTP request
+     * @param $post Post entity
      *
      * @return Response HTTP response
      */
@@ -68,10 +69,10 @@ class CommentController extends AbstractController
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $comment->setPost($post);
             $comment->setAuthor($author);
-            $commentRepository->save($comment);
+            $this->commentService->save($comment);
 
             $this->addFlash(
                 'success',
@@ -83,7 +84,11 @@ class CommentController extends AbstractController
 
         return $this->render(
             'comment/create.html.twig',
-            ['form' => $form->createView()]
+            [
+                'form' => $form->createView(),
+                'comment' => $comment,
+                'post' => $post->getId()
+            ]
         );
     }
 
@@ -95,10 +100,13 @@ class CommentController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/{id}/edit',
+    #[IsGranted('EDIT', subject: 'comment')]
+    #[Route(
+        '/{id}/edit',
         name: 'comment_edit',
         requirements: ['id' => '[1-9]\d*'],
-        methods: 'GET|PUT')]
+        methods: 'GET|PUT'
+    )]
     public function edit(Request $request, Comment $comment): Response
     {
         $form = $this->createForm(CommentType::class, $comment, [
@@ -135,12 +143,18 @@ class CommentController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/{id}/delete',
+    #[IsGranted('ROLE_ADMIN')]
+    #[Route(
+        '/{id}/delete',
         name: 'comment_delete',
         requirements: ['id' => '[1-9]\d*'],
-        methods: 'GET|DELETE')]
+        methods: 'GET|DELETE'
+    )]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Comment $comment): Response
     {
+        $id = $comment->getPost()->getId();
+
         $form = $this->createForm(FormType::class, $comment, [
             'method' => 'DELETE',
             'action' => $this->generateUrl('comment_delete', ['id' => $comment->getId()]),

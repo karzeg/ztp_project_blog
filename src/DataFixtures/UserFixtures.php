@@ -7,13 +7,12 @@ namespace App\DataFixtures;
 
 use App\Entity\Enum\UserRole;
 use App\Entity\User;
-use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 /**
  * Class UserFixtures.
  */
-class UserFixtures extends AbstractBaseFixtures implements DependentFixtureInterface
+class UserFixtures extends AbstractBaseFixtures
 {
     /**
      * Password hasher.
@@ -40,6 +39,7 @@ class UserFixtures extends AbstractBaseFixtures implements DependentFixtureInter
         $this->createMany(5, 'users', function (int $i) {
             $user = new User();
             $user->setEmail(sprintf('user%d@example.com', $i));
+            $user->setLogin(sprintf('user%d', $i));
             $user->setRoles([UserRole::ROLE_USER->value]);
             $user->setPassword(
                 $this->passwordHasher->hashPassword(
@@ -48,14 +48,13 @@ class UserFixtures extends AbstractBaseFixtures implements DependentFixtureInter
                 )
             );
 
-            $user->setUserData($this->getReference('usersData_'.$i));
-
             return $user;
         });
 
         $this->createMany(5, 'admins', function (int $i) {
             $user = new User();
             $user->setEmail(sprintf('admin%d@example.com', $i));
+            $user->setLogin(sprintf('admin%d', $i));
             $user->setRoles([UserRole::ROLE_USER->value, UserRole::ROLE_ADMIN->value]);
             $user->setPassword(
                 $this->passwordHasher->hashPassword(
@@ -64,19 +63,9 @@ class UserFixtures extends AbstractBaseFixtures implements DependentFixtureInter
                 )
             );
 
-            $user->setUserData($this->getReference('usersDataAdmin_'.$i));
-
             return $user;
         });
 
         $this->manager->flush();
-    }
-
-    /**
-     * @return string[]
-     */
-    public function getDependencies(): array
-    {
-        return [UserDataFixtures::class];
     }
 }

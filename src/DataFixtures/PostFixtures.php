@@ -8,8 +8,6 @@ namespace App\DataFixtures;
 use App\Entity\Category;
 use App\Entity\Post;
 use App\Entity\Tag;
-use App\Entity\User;
-use App\DataFixtures\AbstractBaseFixtures;
 use DateTimeImmutable;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
@@ -32,7 +30,8 @@ class PostFixtures extends AbstractBaseFixtures implements DependentFixtureInter
             $post->setTitle($this->faker->sentence);
             $post->setContent($this->faker->paragraph);
             $post->setDate(
-                DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days')));
+                DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days'))
+            );
 
             /** @var Category $category */
             $category = $this->getRandomReference('categories');
@@ -41,7 +40,13 @@ class PostFixtures extends AbstractBaseFixtures implements DependentFixtureInter
             /** @var array<array-key, Tag> $tags */
             $tags = $this->getRandomReferences(
                 'tags',
-                $this->faker->numberBetween(0, 5));
+                $this->faker->numberBetween(0, 5)
+            );
+
+            foreach ($tags as $tag)
+            {
+                $post->addTag($tag);
+            }
 
             return $post;
         });

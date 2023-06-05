@@ -6,6 +6,7 @@
 namespace App\Form\Type;
 
 use App\Entity\Post;
+use App\Entity\Comment;
 use App\Form\DataTransformer\TagsDataTransformer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -52,7 +53,8 @@ class PostType extends AbstractType
                 'label' => 'label.title',
                 'required' => true,
                 'attr' => ['max_length' => 120],
-            ]);
+            ]
+        );
 
         $builder->add(
             'content',
@@ -61,7 +63,8 @@ class PostType extends AbstractType
                 'label' => 'label.content',
                 'required' => true,
                 'attr' => ['max_length' => 65000],
-            ]);
+            ]
+        );
 
         $builder->add(
             'category',

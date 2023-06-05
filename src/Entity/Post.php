@@ -6,6 +6,7 @@
 namespace App\Entity;
 
 use App\Repository\PostRepository;
+use App\Repository\CategoryRepository;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -36,6 +37,7 @@ class Post
      * @var DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
+    #[Assert\Type(DateTimeImmutable::class)]
     #[Gedmo\Timestampable(on: 'create')]
     private ?DateTimeImmutable $date;
 
@@ -45,7 +47,9 @@ class Post
      * @var string|null
      */
     #[ORM\Column(type: 'string', length: 120)]
+    #[Assert\Type('string')]
     #[Assert\NotBlank]
+    #[Assert\Length(min: 3, max: 120)]
     private ?string $title = null;
 
     /**
@@ -54,6 +58,8 @@ class Post
      * @var string|null
      */
     #[ORM\Column(type: 'text')]
+    #[Assert\Type('string')]
+    #[Assert\Length(min:3, max: 65000)]
     #[Assert\NotBlank]
     private ?string $content = null;
 
@@ -62,10 +68,11 @@ class Post
      *
      * @var Category
      **/
-    #[ORM\ManyToOne(targetEntity: Category::class)]
+    #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EXTRA_LAZY')]
+    #[Assert\Type(Category::class)]
     #[Assert\NotBlank]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Category $category;
+    private Category $category;
 
     /**
      * Tags.
@@ -73,8 +80,8 @@ class Post
      * @var ArrayCollection<int, Tag>
      */
     #[Assert\Valid]
-    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'posts')]
-    #[ORM\JoinColumn(name: 'posts_tags')]
+    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'posts', orphanRemoval: true)]
+    #[ORM\JoinTable(name: 'posts_tags')]
     private $tags;
 
     /**
@@ -117,9 +124,9 @@ class Post
     /**
      * Setter for date.
      *
-     * @param DateTimeImmutable|null $date Date
+     * @param DateTimeImmutable $date Date
      */
-    public function setDate(?DateTimeImmutable $date): void
+    public function setDate(DateTimeImmutable $date): void
     {
         $this->date = $date;
     }
@@ -146,8 +153,6 @@ class Post
 
     /**
      * Getter for Title.
-     *
-     * @return string|null
      */
     public function getTitle(): ?string
     {
@@ -156,8 +161,6 @@ class Post
 
     /**
      * Setter for Title.
-     *
-     * @param string $title
      */
     public function setTitle(string $title): void
     {

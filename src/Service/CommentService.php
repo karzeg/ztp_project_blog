@@ -8,6 +8,7 @@ namespace App\Service;
 use App\Entity\Comment;
 use App\Repository\CommentRepository;
 use Knp\Component\Pager\PaginatorInterface;
+use Knp\Component\Pager\Pagination\PaginationInterface;
 
 /**
  * Class CommentService.
