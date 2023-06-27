@@ -36,8 +36,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Primary key.
-     *
-     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -46,13 +44,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Email.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     #[Assert\NotBlank]
     #[Assert\Email]
-    #[Assert\Length(min:5, max: 180)]
+    #[Assert\Length(min: 5, max: 180)]
     private ?string $email;
 
     /**
@@ -65,8 +61,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Password.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string')]
     #[Assert\NotBlank]
@@ -74,8 +68,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Login.
-     *
-     * @var string|null
      */
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $login = null;
@@ -202,16 +194,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    /**
-     * @return string|null
-     */
     public function getLogin(): ?string
     {
         return $this->login;
     }
 
     /**
-     * @param string|null $login
      * @return $this
      */
     public function setLogin(?string $login): self

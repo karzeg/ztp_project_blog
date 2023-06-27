@@ -12,14 +12,6 @@
             <dd>{{ category.id }}</dd>
             <dt>{{ 'label.title'|trans }}</dt>
             <dd>{{  category.title }}</dd>
-            <dt>{{ 'label_post'|trans }}</dt>
-            <dd>
-                {% for post in category.posts %}
-                    <a href="{{ url('post_show', {id: post.id}) }}" title="{{ 'post_show'|trans }}">
-                        {{ post.title }}
-                    </a><br>
-                {%  endfor %}
-            </dd>
         </dl>
         <p>
             <a href="{{ url('category_index') }}" title="{{ 'action.back_to_list'|trans }}">

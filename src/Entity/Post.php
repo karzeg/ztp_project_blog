@@ -6,7 +6,6 @@
 namespace App\Entity;
 
 use App\Repository\PostRepository;
-use App\Repository\CategoryRepository;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -23,8 +22,6 @@ class Post
 {
     /**
      * Primary key.
-     *
-     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -33,18 +30,14 @@ class Post
 
     /**
      * Date.
-     *
-     * @var DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
-    #[Assert\Type(DateTimeImmutable::class)]
+    #[Assert\Type(\DateTimeImmutable::class)]
     #[Gedmo\Timestampable(on: 'create')]
-    private ?DateTimeImmutable $date;
+    private ?\DateTimeImmutable $date;
 
     /**
      * Title.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 120)]
     #[Assert\Type('string')]
@@ -54,19 +47,16 @@ class Post
 
     /**
      * Content.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'text')]
     #[Assert\Type('string')]
-    #[Assert\Length(min:3, max: 65000)]
+    #[Assert\Length(min: 3, max: 65000)]
     #[Assert\NotBlank]
     private ?string $content = null;
 
     /**
      * Category.
      *
-     * @var Category
      **/
     #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EXTRA_LAZY')]
     #[Assert\Type(Category::class)]
@@ -114,9 +104,9 @@ class Post
     /**
      * Getter for date.
      *
-     * @return DateTimeImmutable|null Date
+     * @return \DateTimeImmutable|null Date
      */
-    public function getDate(): ?DateTimeImmutable
+    public function getDate(): ?\DateTimeImmutable
     {
         return $this->date;
     }
@@ -124,9 +114,9 @@ class Post
     /**
      * Setter for date.
      *
-     * @param DateTimeImmutable $date Date
+     * @param \DateTimeImmutable $date Date
      */
-    public function setDate(DateTimeImmutable $date): void
+    public function setDate(\DateTimeImmutable $date): void
     {
         $this->date = $date;
     }
@@ -211,47 +201,5 @@ class Post
     public function removeTag(Tag $tag): void
     {
         $this->tags->removeElement($tag);
-    }
-
-    /**
-     * Getter for comment.
-     *
-     * @return Collection<int, Comment>
-     */
-    public function getComments(): Collection
-    {
-        return $this->comments;
-    }
-
-    /**
-     * Add comment.
-     *
-     * @return $this
-     */
-    public function addComment(Comment $comment): self
-    {
-        if (!$this->comments->contains($comment)) {
-            $this->comments[] = $comment;
-            $comment->setPost($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Remove comment.
-     *
-     * @return $this
-     */
-    public function removeComment(Comment $comment): self
-    {
-        if ($this->comments->removeElement($comment)) {
-            // set the owning side to null (unless already changed)
-            if ($comment->getPost() === $this) {
-                $comment->setPost(null);
-            }
-        }
-
-        return $this;
     }
 }

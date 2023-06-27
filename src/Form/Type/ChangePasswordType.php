@@ -34,8 +34,8 @@ class ChangePasswordType extends AbstractType
             [
                 'type' => PasswordType::class,
                 'invalid_message' => 'label.different_passwords',
-                'first_options' => ['label' => 'label.new_password'],
-                'second_options' => ['label' => 'label.repeat_password'],
+                'first_options' => ['label' => 'label_new_password'],
+                'second_options' => ['label' => 'label_repeat_password'],
             ]
         );
     }

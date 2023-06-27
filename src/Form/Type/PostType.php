@@ -6,7 +6,6 @@
 namespace App\Form\Type;
 
 use App\Entity\Post;
-use App\Entity\Comment;
 use App\Form\DataTransformer\TagsDataTransformer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;

@@ -20,8 +20,6 @@ class Comment
 {
     /**
      * Primary key.
-     *
-     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -30,8 +28,6 @@ class Comment
 
     /**
      * Content.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'text')]
     #[Assert\Type('string')]
@@ -43,9 +39,9 @@ class Comment
      * @var DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
-    #[Assert\Type('DateTimeImmutable::class')]
+    #[Assert\Type(\DateTimeImmutable::class)]
     #[Gedmo\Timestampable(on: 'create')]
-    private ?DateTimeImmutable $date;
+    private ?\DateTimeImmutable $date;
 
     /**
      * Post.
@@ -57,8 +53,6 @@ class Comment
 
     /**
      * Author.
-     *
-     * @var User|null
      */
     #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
     #[Assert\Type(User::class)]
@@ -97,19 +91,26 @@ class Comment
     /**
      * Getter for date.
      */
-    public function getDate(): ?DateTimeImmutable
+    public function getDate(): ?\DateTimeImmutable
     {
         return $this->date;
     }
 
     /**
      * Setter for date.
+     *
+     * @param DateTimeImmutable $date Date
      */
-    public function setDate(DateTimeImmutable $date): void
+    public function setDate(\DateTimeImmutable $date): void
     {
         $this->date = $date;
     }
 
+    /**
+     * Getter for Post.
+     *
+     * @return Post|null Post
+     */
     public function getPost(): ?Post
     {
         return $this->post;
@@ -128,9 +129,7 @@ class Comment
     }
 
     /**
-     * Getter for User.
-     *
-     * @return User|null
+     * Getter for Author.
      */
     public function getAuthor(): ?User
     {
@@ -140,7 +139,6 @@ class Comment
     /**
      * Setter for Author.
      *
-     * @param User|null $author
      * @return $this
      */
     public function setAuthor(?User $author): self

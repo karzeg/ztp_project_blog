@@ -48,7 +48,7 @@
 
         <table class="table">
             <tbody>
-            {% for comment in post.comments %}
+            {% for comment in comments %}
                 <tr>
                     <td>{{ comment.date|date('d/m/Y') }}</td>
                     <td>{{ comment.content }}</td>

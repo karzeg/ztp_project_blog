@@ -7,7 +7,6 @@ namespace App\Repository;
 
 use App\Entity\Category;
 use App\Entity\Post;
-use App\Entity\Tag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
@@ -54,7 +53,9 @@ class PostRepository extends ServiceEntityRepository
     {
         return $this->getOrCreateQueryBuilder()
             ->select(
-                'partial post.{id, title, date}', 'partial category.{id, title}')
+                'partial post.{id, title, date}',
+                'partial category.{id, title}'
+            )
             ->join('post.category', 'category')
             ->orderBy('post.date', 'DESC');
     }
@@ -75,8 +76,6 @@ class PostRepository extends ServiceEntityRepository
      * Save entity.
      *
      * @param Post $post Post entity
-     *
-     * @return void
      */
     public function save(Post $post): void
     {
@@ -94,7 +93,6 @@ class PostRepository extends ServiceEntityRepository
         $this->_em->remove($post);
         $this->_em->flush();
     }
-
 
     /**
      * Count posts by category.

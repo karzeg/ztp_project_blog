@@ -10,7 +10,6 @@ use App\Form\Type\ChangePasswordType;
 use App\Form\Type\UserType;
 use App\Service\UserServiceInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -53,7 +52,6 @@ class UserController extends AbstractController
      * @param Request $request HTTP Request
      *
      * @return Response HTTP response
-     *
      */
     #[IsGranted('ROLE_ADMIN')]
     #[Route(name: 'user_index', methods: 'GET')]
@@ -72,7 +70,6 @@ class UserController extends AbstractController
      * @param User $user User
      *
      * @return Response HTTP response
-     *
      */
     #[Route(
         '/{id}',
@@ -196,12 +193,6 @@ class UserController extends AbstractController
 
     /**
      * Change password action.
-     *
-     * @param Request                     $request
-     * @param User                        $user
-     * @param UserPasswordHasherInterface $passwordHasher
-     *
-     * @return Response
      */
     #[Route('/{id}/change_password', name: 'change_password', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     public function changePassword(Request $request, User $user, UserPasswordHasherInterface $passwordHasher): Response

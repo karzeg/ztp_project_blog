@@ -7,7 +7,6 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\Post;
-use App\Entity\User;
 use App\Form\Type\CommentType;
 use App\Repository\CommentRepository;
 use App\Service\CommentServiceInterface;
@@ -87,7 +86,7 @@ class CommentController extends AbstractController
             [
                 'form' => $form->createView(),
                 'comment' => $comment,
-                'post' => $post->getId()
+                'post' => $post->getId(),
             ]
         );
     }
@@ -150,11 +149,8 @@ class CommentController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET|DELETE'
     )]
-    #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Comment $comment): Response
     {
-        $id = $comment->getPost()->getId();
-
         $form = $this->createForm(FormType::class, $comment, [
             'method' => 'DELETE',
             'action' => $this->generateUrl('comment_delete', ['id' => $comment->getId()]),

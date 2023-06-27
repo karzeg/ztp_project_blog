@@ -5,10 +5,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Post;
+use App\Form\Type\CommentType;
 use App\Form\Type\PostType;
 use App\Repository\CommentRepository;
+use App\Service\CommentService;
 use App\Service\PostServiceInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -38,11 +42,13 @@ class PostController extends AbstractController
      *
      * @param PostServiceInterface $postService Post service
      * @param TranslatorInterface  $translator  Translator
+     * @param CommentService $commentService Comment Service
      */
-    public function __construct(PostServiceInterface $postService, TranslatorInterface $translator)
+    public function __construct(PostServiceInterface $postService, TranslatorInterface $translator, CommentService $commentService)
     {
         $this->postService = $postService;
         $this->translator = $translator;
+        $this->commentService = $commentService;
     }
 
     /**
@@ -71,7 +77,10 @@ class PostController extends AbstractController
     /**
      * Show action.
      *
+     * @param Request $request request
      * @param Post $post Post entity
+     * @param CommentRepository $commentRepository param
+     * @param EntityManagerInterface $em param
      *
      * @return Response HTTP response
      */
@@ -81,13 +90,26 @@ class PostController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET',
     )]
-    public function show(Post $post, CommentRepository $commentRepository): Response
+    public function show(Request $request, Post $post, CommentRepository $commentRepository, EntityManagerInterface $em): Response
     {
-        return $this->render(
-            'post/show.html.twig',
-            ['post' => $post]
-// $form->createView()]
-        );
+        $postId = $post->getId();
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setPost($post);
+            $this->commentService->save($comment);
+            $redirectUrl = $this->generateUrl('post_show', ['id' => $postId]);
+
+            return $this->redirect($redirectUrl);
+        }
+        $filteredComment = $commentRepository->findBy(['post' => $postId]);
+
+        return $this->render('post/show.html.twig', [
+            'post' => $post,
+            'comments' => $filteredComment,
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
