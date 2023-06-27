@@ -48,7 +48,8 @@ class Comment
      *
      * @var Post|null
      */
-    #[ORM\ManyToOne(targetEntity: Post::class, inversedBy: 'comments')]
+    #[ORM\ManyToOne(targetEntity: Post::class, fetch: 'EXTRA_LAZY')]
+    #[Assert\Type(Comment::class)]
     private $post;
 
     /**
