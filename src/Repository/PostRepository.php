@@ -62,7 +62,6 @@ class PostRepository extends ServiceEntityRepository
             )
             ->join('post.category', 'category')
             ->leftJoin('post.tags', 'tags')
-            ->leftJoin('post.comments', 'comments')
             ->orderBy('post.date', 'DESC');
     }
 
