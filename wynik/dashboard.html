@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /home/wwwroot/app/src</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="_css/bootstrap.min.css?v=9.2.26" rel="stylesheet" type="text/css">
+  <link href="_css/nv.d3.min.css?v=9.2.26" rel="stylesheet" type="text/css">
+  <link href="_css/style.css?v=9.2.26" rel="stylesheet" type="text/css">
+  <link href="_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="index.html">/home/wwwroot/app/src</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Controller/CommentController.php.html#24">App\Controller\CommentController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/Type/ChangePasswordType.php.html#16">App\Form\Type\ChangePasswordType</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/CommentRepository.php.html#21">App\Repository\CommentRepository</a></td><td class="text-right">14%</td></tr>
+       <tr><td><a href="Entity/Comment.php.html#17">App\Entity\Comment</a></td><td class="text-right">18%</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#23">App\Controller\UserController</a></td><td class="text-right">19%</td></tr>
+       <tr><td><a href="Security/LoginFormAuthenticator.php.html#25">App\Security\LoginFormAuthenticator</a></td><td class="text-right">25%</td></tr>
+       <tr><td><a href="Security/Voter/CommentVoter.php.html#18">App\Security\Voter\CommentVoter</a></td><td class="text-right">27%</td></tr>
+       <tr><td><a href="Service/CommentService.php.html#15">App\Service\CommentService</a></td><td class="text-right">33%</td></tr>
+       <tr><td><a href="Controller/RegistrationController.php.html#23">App\Controller\RegistrationController</a></td><td class="text-right">52%</td></tr>
+       <tr><td><a href="Entity/Tag.php.html#16">App\Entity\Tag</a></td><td class="text-right">57%</td></tr>
+       <tr><td><a href="Security/Voter/UserVoter.php.html#17">App\Security\Voter\UserVoter</a></td><td class="text-right">63%</td></tr>
+       <tr><td><a href="Service/PostService.php.html#16">App\Service\PostService</a></td><td class="text-right">73%</td></tr>
+       <tr><td><a href="Controller/SecurityController.php.html#16">App\Controller\SecurityController</a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="Repository/UserRepository.php.html#22">App\Repository\UserRepository</a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="Service/UserService.php.html#16">App\Service\UserService</a></td><td class="text-right">77%</td></tr>
+       <tr><td><a href="Repository/PostRepository.php.html#26">App\Repository\PostRepository</a></td><td class="text-right">79%</td></tr>
+       <tr><td><a href="Service/CategoryService.php.html#19">App\Service\CategoryService</a></td><td class="text-right">86%</td></tr>
+       <tr><td><a href="Entity/User.php.html#18">App\Entity\User</a></td><td class="text-right">87%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Controller/CommentController.php.html#24">App\Controller\CommentController</a></td><td class="text-right">110</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#23">App\Controller\UserController</a></td><td class="text-right">100</td></tr>
+       <tr><td><a href="Security/Voter/CommentVoter.php.html#18">App\Security\Voter\CommentVoter</a></td><td class="text-right">40</td></tr>
+       <tr><td><a href="Security/LoginFormAuthenticator.php.html#25">App\Security\LoginFormAuthenticator</a></td><td class="text-right">27</td></tr>
+       <tr><td><a href="Repository/PostRepository.php.html#26">App\Repository\PostRepository</a></td><td class="text-right">13</td></tr>
+       <tr><td><a href="Service/PostService.php.html#16">App\Service\PostService</a></td><td class="text-right">11</td></tr>
+       <tr><td><a href="Security/Voter/UserVoter.php.html#17">App\Security\Voter\UserVoter</a></td><td class="text-right">11</td></tr>
+       <tr><td><a href="Entity/Tag.php.html#16">App\Entity\Tag</a></td><td class="text-right">10</td></tr>
+       <tr><td><a href="Service/CommentService.php.html#15">App\Service\CommentService</a></td><td class="text-right">8</td></tr>
+       <tr><td><a href="Service/CategoryService.php.html#19">App\Service\CategoryService</a></td><td class="text-right">7</td></tr>
+       <tr><td><a href="Controller/RegistrationController.php.html#23">App\Controller\RegistrationController</a></td><td class="text-right">5</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Controller/CommentController.php.html#43"><abbr title="App\Controller\CommentController::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/CommentController.php.html#58"><abbr title="App\Controller\CommentController::create">create</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/CommentController.php.html#103"><abbr title="App\Controller\CommentController::edit">edit</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/CommentController.php.html#146"><abbr title="App\Controller\CommentController::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SecurityController.php.html#45"><abbr title="App\Controller\SecurityController::logout">logout</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#110"><abbr title="App\Controller\UserController::create">create</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#147"><abbr title="App\Controller\UserController::changePassword">changePassword</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Comment.php.html#64"><abbr title="App\Entity\Comment::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Comment.php.html#94"><abbr title="App\Entity\Comment::getDate">getDate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Comment.php.html#104"><abbr title="App\Entity\Comment::setDate">setDate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Comment.php.html#114"><abbr title="App\Entity\Comment::getPost">getPost</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Comment.php.html#126"><abbr title="App\Entity\Comment::setPost">setPost</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Comment.php.html#138"><abbr title="App\Entity\Comment::getAuthor">getAuthor</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Comment.php.html#150"><abbr title="App\Entity\Comment::setAuthor">setAuthor</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Tag.php.html#91"><abbr title="App\Entity\Tag::addPost">addPost</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Tag.php.html#104"><abbr title="App\Entity\Tag::removePost">removePost</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#122"><abbr title="App\Entity\User::getUsername">getUsername</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#193"><abbr title="App\Entity\User::eraseCredentials">eraseCredentials</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/Type/ChangePasswordType.php.html#29"><abbr title="App\Form\Type\ChangePasswordType::buildForm">buildForm</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/CommentRepository.php.html#38"><abbr title="App\Repository\CommentRepository::queryAll">queryAll</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/CommentRepository.php.html#49"><abbr title="App\Repository\CommentRepository::save">save</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/CommentRepository.php.html#60"><abbr title="App\Repository\CommentRepository::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/PostRepository.php.html#135"><abbr title="App\Repository\PostRepository::applyFiltersToList">applyFiltersToList</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/UserRepository.php.html#68"><abbr title="App\Repository\UserRepository::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Security/LoginFormAuthenticator.php.html#90"><abbr title="App\Security\LoginFormAuthenticator::authenticate">authenticate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Security/LoginFormAuthenticator.php.html#122"><abbr title="App\Security\LoginFormAuthenticator::onAuthenticationSuccess">onAuthenticationSuccess</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Security/Voter/CommentVoter.php.html#73"><abbr title="App\Security\Voter\CommentVoter::voteOnAttribute">voteOnAttribute</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Security/Voter/CommentVoter.php.html#98"><abbr title="App\Security\Voter\CommentVoter::canEdit">canEdit</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Security/Voter/CommentVoter.php.html#111"><abbr title="App\Security\Voter\CommentVoter::canDelete">canDelete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/CommentService.php.html#39"><abbr title="App\Service\CommentService::save">save</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/CommentService.php.html#53"><abbr title="App\Service\CommentService::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/TagService.php.html#98"><abbr title="App\Service\TagService::findOneByTitle">findOneByTitle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/UserService.php.html#61"><abbr title="App\Service\UserService::save">save</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/UserService.php.html#71"><abbr title="App\Service\UserService::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#73"><abbr title="App\Controller\UserController::show">show</abbr></a></td><td class="text-right">40%</td></tr>
+       <tr><td><a href="Service/PostService.php.html#116"><abbr title="App\Service\PostService::prepareFilters">prepareFilters</abbr></a></td><td class="text-right">40%</td></tr>
+       <tr><td><a href="Controller/RegistrationController.php.html#51"><abbr title="App\Controller\RegistrationController::register">register</abbr></a></td><td class="text-right">50%</td></tr>
+       <tr><td><a href="Security/Voter/UserVoter.php.html#72"><abbr title="App\Security\Voter\UserVoter::voteOnAttribute">voteOnAttribute</abbr></a></td><td class="text-right">50%</td></tr>
+       <tr><td><a href="Service/CategoryService.php.html#107"><abbr title="App\Service\CategoryService::canBeDeleted">canBeDeleted</abbr></a></td><td class="text-right">50%</td></tr>
+       <tr><td><a href="Controller/PostController.php.html#91"><abbr title="App\Controller\PostController::show">show</abbr></a></td><td class="text-right">73%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Repository/PostRepository.php.html#135"><abbr title="App\Repository\PostRepository::applyFiltersToList">applyFiltersToList</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#147"><abbr title="App\Controller\UserController::changePassword">changePassword</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Security/Voter/CommentVoter.php.html#73"><abbr title="App\Security\Voter\CommentVoter::voteOnAttribute">voteOnAttribute</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Controller/CommentController.php.html#58"><abbr title="App\Controller\CommentController::create">create</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/CommentController.php.html#103"><abbr title="App\Controller\CommentController::edit">edit</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/CommentController.php.html#146"><abbr title="App\Controller\CommentController::delete">delete</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#110"><abbr title="App\Controller\UserController::create">create</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Service/PostService.php.html#116"><abbr title="App\Service\PostService::prepareFilters">prepareFilters</abbr></a></td><td class="text-right">10</td></tr>
+       <tr><td><a href="Security/Voter/UserVoter.php.html#72"><abbr title="App\Security\Voter\UserVoter::voteOnAttribute">voteOnAttribute</abbr></a></td><td class="text-right">8</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#73"><abbr title="App\Controller\UserController::show">show</abbr></a></td><td class="text-right">7</td></tr>
+       <tr><td><a href="Entity/Tag.php.html#91"><abbr title="App\Entity\Tag::addPost">addPost</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Security/LoginFormAuthenticator.php.html#122"><abbr title="App\Security\LoginFormAuthenticator::onAuthenticationSuccess">onAuthenticationSuccess</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Service/CommentService.php.html#39"><abbr title="App\Service\CommentService::save">save</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/RegistrationController.php.html#51"><abbr title="App\Controller\RegistrationController::register">register</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Controller/PostController.php.html#91"><abbr title="App\Controller\PostController::show">show</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Service/CategoryService.php.html#107"><abbr title="App\Service\CategoryService::canBeDeleted">canBeDeleted</abbr></a></td><td class="text-right">2</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 9.2.26</a> using <a href="https://secure.php.net/" target="_top">PHP 8.1.5</a> and <a href="https://phpunit.de/">PHPUnit 9.6.8</a> at Thu Jun 29 22:50:50 UTC 2023.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="_js/jquery.min.js?v=9.2.26" type="text/javascript"></script>
+  <script src="_js/d3.min.js?v=9.2.26" type="text/javascript"></script>
+  <script src="_js/nv.d3.min.js?v=9.2.26" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([2,0,3,2,1,0,2,1,5,2,2,13], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([34,0,0,0,0,2,3,0,1,0,0,120], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[100,13,"<a href=\"Controller\/CategoryController.php.html#22\">App\\Controller\\CategoryController<\/a>"],[0,10,"<a href=\"Controller\/CommentController.php.html#24\">App\\Controller\\CommentController<\/a>"],[95.23809523809523,15,"<a href=\"Controller\/PostController.php.html#27\">App\\Controller\\PostController<\/a>"],[52.94117647058824,4,"<a href=\"Controller\/RegistrationController.php.html#23\">App\\Controller\\RegistrationController<\/a>"],[75,2,"<a href=\"Controller\/SecurityController.php.html#16\">App\\Controller\\SecurityController<\/a>"],[100,12,"<a href=\"Controller\/TagController.php.html#23\">App\\Controller\\TagController<\/a>"],[19.672131147540984,13,"<a href=\"Controller\/UserController.php.html#23\">App\\Controller\\UserController<\/a>"],[100,3,"<a href=\"Entity\/Category.php.html#15\">App\\Entity\\Category<\/a>"],[18.181818181818183,9,"<a href=\"Entity\/Comment.php.html#17\">App\\Entity\\Comment<\/a>"],[100,14,"<a href=\"Entity\/Post.php.html#19\">App\\Entity\\Post<\/a>"],[57.14285714285714,7,"<a href=\"Entity\/Tag.php.html#16\">App\\Entity\\Tag<\/a>"],[87.5,13,"<a href=\"Entity\/User.php.html#18\">App\\Entity\\User<\/a>"],[100,8,"<a href=\"Form\/DataTransformer\/TagsDataTransformer.php.html#18\">App\\Form\\DataTransformer\\TagsDataTransformer<\/a>"],[100,3,"<a href=\"Form\/Type\/CategoryType.php.html#17\">App\\Form\\Type\\CategoryType<\/a>"],[0,1,"<a href=\"Form\/Type\/ChangePasswordType.php.html#16\">App\\Form\\Type\\ChangePasswordType<\/a>"],[100,3,"<a href=\"Form\/Type\/CommentType.php.html#17\">App\\Form\\Type\\CommentType<\/a>"],[100,4,"<a href=\"Form\/Type\/PostType.php.html#19\">App\\Form\\Type\\PostType<\/a>"],[100,1,"<a href=\"Form\/Type\/RegistrationType.php.html#18\">App\\Form\\Type\\RegistrationType<\/a>"],[100,3,"<a href=\"Form\/Type\/TagType.php.html#17\">App\\Form\\Type\\TagType<\/a>"],[100,5,"<a href=\"Repository\/CategoryRepository.php.html#21\">App\\Repository\\CategoryRepository<\/a>"],[14.285714285714285,4,"<a href=\"Repository\/CommentRepository.php.html#21\">App\\Repository\\CommentRepository<\/a>"],[79.41176470588235,12,"<a href=\"Repository\/PostRepository.php.html#26\">App\\Repository\\PostRepository<\/a>"],[100,5,"<a href=\"Repository\/TagRepository.php.html#23\">App\\Repository\\TagRepository<\/a>"],[75,5,"<a href=\"Repository\/UserRepository.php.html#22\">App\\Repository\\UserRepository<\/a>"],[25,7,"<a href=\"Security\/LoginFormAuthenticator.php.html#25\">App\\Security\\LoginFormAuthenticator<\/a>"],[27.27272727272727,9,"<a href=\"Security\/Voter\/CommentVoter.php.html#18\">App\\Security\\Voter\\CommentVoter<\/a>"],[63.63636363636363,8,"<a href=\"Security\/Voter\/UserVoter.php.html#17\">App\\Security\\Voter\\UserVoter<\/a>"],[86.66666666666667,7,"<a href=\"Service\/CategoryService.php.html#19\">App\\Service\\CategoryService<\/a>"],[33.33333333333333,4,"<a href=\"Service\/CommentService.php.html#15\">App\\Service\\CommentService<\/a>"],[73.91304347826086,10,"<a href=\"Service\/PostService.php.html#16\">App\\Service\\PostService<\/a>"],[90.9090909090909,6,"<a href=\"Service\/TagService.php.html#17\">App\\Service\\TagService<\/a>"],[77.77777777777779,4,"<a href=\"Service\/UserService.php.html#16\">App\\Service\\UserService<\/a>"],[100,1,"<a href=\"Entity\/Enum\/UserRole.php.html#11\">App\\Entity\\Enum\\UserRole<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[100,1,"<a href=\"Controller\/CategoryController.php.html#41\">App\\Controller\\CategoryController::__construct<\/a>"],[100,1,"<a href=\"Controller\/CategoryController.php.html#54\">App\\Controller\\CategoryController::index<\/a>"],[100,1,"<a href=\"Controller\/CategoryController.php.html#74\">App\\Controller\\CategoryController::show<\/a>"],[100,3,"<a href=\"Controller\/CategoryController.php.html#92\">App\\Controller\\CategoryController::create<\/a>"],[100,3,"<a href=\"Controller\/CategoryController.php.html#129\">App\\Controller\\CategoryController::edit<\/a>"],[100,4,"<a href=\"Controller\/CategoryController.php.html#167\">App\\Controller\\CategoryController::delete<\/a>"],[0,1,"<a href=\"Controller\/CommentController.php.html#43\">App\\Controller\\CommentController::__construct<\/a>"],[0,3,"<a href=\"Controller\/CommentController.php.html#58\">App\\Controller\\CommentController::create<\/a>"],[0,3,"<a href=\"Controller\/CommentController.php.html#103\">App\\Controller\\CommentController::edit<\/a>"],[0,3,"<a href=\"Controller\/CommentController.php.html#146\">App\\Controller\\CommentController::delete<\/a>"],[100,1,"<a href=\"Controller\/PostController.php.html#49\">App\\Controller\\PostController::__construct<\/a>"],[100,1,"<a href=\"Controller\/PostController.php.html#63\">App\\Controller\\PostController::index<\/a>"],[73.33333333333333,3,"<a href=\"Controller\/PostController.php.html#91\">App\\Controller\\PostController::show<\/a>"],[100,3,"<a href=\"Controller\/PostController.php.html#128\">App\\Controller\\PostController::create<\/a>"],[100,3,"<a href=\"Controller\/PostController.php.html#167\">App\\Controller\\PostController::edit<\/a>"],[100,3,"<a href=\"Controller\/PostController.php.html#212\">App\\Controller\\PostController::delete<\/a>"],[100,1,"<a href=\"Controller\/PostController.php.html#257\">App\\Controller\\PostController::getFilters<\/a>"],[100,1,"<a href=\"Controller\/RegistrationController.php.html#35\">App\\Controller\\RegistrationController::__construct<\/a>"],[50,3,"<a href=\"Controller\/RegistrationController.php.html#51\">App\\Controller\\RegistrationController::register<\/a>"],[100,1,"<a href=\"Controller\/SecurityController.php.html#25\">App\\Controller\\SecurityController::login<\/a>"],[0,1,"<a href=\"Controller\/SecurityController.php.html#45\">App\\Controller\\SecurityController::logout<\/a>"],[100,1,"<a href=\"Controller\/TagController.php.html#42\">App\\Controller\\TagController::__construct<\/a>"],[100,1,"<a href=\"Controller\/TagController.php.html#55\">App\\Controller\\TagController::index<\/a>"],[100,1,"<a href=\"Controller\/TagController.php.html#72\">App\\Controller\\TagController::show<\/a>"],[100,3,"<a href=\"Controller\/TagController.php.html#90\">App\\Controller\\TagController::create<\/a>"],[100,3,"<a href=\"Controller\/TagController.php.html#127\">App\\Controller\\TagController::edit<\/a>"],[100,3,"<a href=\"Controller\/TagController.php.html#170\">App\\Controller\\TagController::delete<\/a>"],[100,1,"<a href=\"Controller\/UserController.php.html#42\">App\\Controller\\UserController::__construct<\/a>"],[100,1,"<a href=\"Controller\/UserController.php.html#55\">App\\Controller\\UserController::index<\/a>"],[40,4,"<a href=\"Controller\/UserController.php.html#73\">App\\Controller\\UserController::show<\/a>"],[0,3,"<a href=\"Controller\/UserController.php.html#110\">App\\Controller\\UserController::create<\/a>"],[0,4,"<a href=\"Controller\/UserController.php.html#147\">App\\Controller\\UserController::changePassword<\/a>"],[100,1,"<a href=\"Entity\/Category.php.html#40\">App\\Entity\\Category::getId<\/a>"],[100,1,"<a href=\"Entity\/Category.php.html#50\">App\\Entity\\Category::getTitle<\/a>"],[100,1,"<a href=\"Entity\/Category.php.html#60\">App\\Entity\\Category::setTitle<\/a>"],[0,1,"<a href=\"Entity\/Comment.php.html#64\">App\\Entity\\Comment::getId<\/a>"],[100,1,"<a href=\"Entity\/Comment.php.html#74\">App\\Entity\\Comment::getContent<\/a>"],[100,1,"<a href=\"Entity\/Comment.php.html#84\">App\\Entity\\Comment::setContent<\/a>"],[0,1,"<a href=\"Entity\/Comment.php.html#94\">App\\Entity\\Comment::getDate<\/a>"],[0,1,"<a href=\"Entity\/Comment.php.html#104\">App\\Entity\\Comment::setDate<\/a>"],[0,1,"<a href=\"Entity\/Comment.php.html#114\">App\\Entity\\Comment::getPost<\/a>"],[0,1,"<a href=\"Entity\/Comment.php.html#126\">App\\Entity\\Comment::setPost<\/a>"],[0,1,"<a href=\"Entity\/Comment.php.html#138\">App\\Entity\\Comment::getAuthor<\/a>"],[0,1,"<a href=\"Entity\/Comment.php.html#150\">App\\Entity\\Comment::setAuthor<\/a>"],[100,1,"<a href=\"Entity\/Post.php.html#80\">App\\Entity\\Post::__construct<\/a>"],[100,1,"<a href=\"Entity\/Post.php.html#90\">App\\Entity\\Post::getId<\/a>"],[100,1,"<a href=\"Entity\/Post.php.html#100\">App\\Entity\\Post::getDate<\/a>"],[100,1,"<a href=\"Entity\/Post.php.html#110\">App\\Entity\\Post::setDate<\/a>"],[100,1,"<a href=\"Entity\/Post.php.html#120\">App\\Entity\\Post::getContent<\/a>"],[100,1,"<a href=\"Entity\/Post.php.html#130\">App\\Entity\\Post::setContent<\/a>"],[100,1,"<a href=\"Entity\/Post.php.html#140\">App\\Entity\\Post::getTitle<\/a>"],[100,1,"<a href=\"Entity\/Post.php.html#152\">App\\Entity\\Post::setTitle<\/a>"],[100,1,"<a href=\"Entity\/Post.php.html#162\">App\\Entity\\Post::getCategory<\/a>"],[100,1,"<a href=\"Entity\/Post.php.html#174\">App\\Entity\\Post::setCategory<\/a>"],[100,1,"<a href=\"Entity\/Post.php.html#184\">App\\Entity\\Post::getTags<\/a>"],[100,2,"<a href=\"Entity\/Post.php.html#194\">App\\Entity\\Post::addTag<\/a>"],[100,1,"<a href=\"Entity\/Post.php.html#208\">App\\Entity\\Post::removeTag<\/a>"],[100,1,"<a href=\"Entity\/Tag.php.html#51\">App\\Entity\\Tag::__construct<\/a>"],[100,1,"<a href=\"Entity\/Tag.php.html#61\">App\\Entity\\Tag::getId<\/a>"],[100,1,"<a href=\"Entity\/Tag.php.html#71\">App\\Entity\\Tag::getTitle<\/a>"],[100,1,"<a href=\"Entity\/Tag.php.html#81\">App\\Entity\\Tag::setTitle<\/a>"],[0,2,"<a href=\"Entity\/Tag.php.html#91\">App\\Entity\\Tag::addPost<\/a>"],[0,1,"<a href=\"Entity\/Tag.php.html#104\">App\\Entity\\Tag::removePost<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#80\">App\\Entity\\User::getId<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#90\">App\\Entity\\User::getEmail<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#100\">App\\Entity\\User::setEmail<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#112\">App\\Entity\\User::getUserIdentifier<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#122\">App\\Entity\\User::getUsername<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#134\">App\\Entity\\User::getRoles<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#148\">App\\Entity\\User::setRoles<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#160\">App\\Entity\\User::getPassword<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#170\">App\\Entity\\User::setPassword<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#183\">App\\Entity\\User::getSalt<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#193\">App\\Entity\\User::eraseCredentials<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#204\">App\\Entity\\User::getLogin<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#216\">App\\Entity\\User::setLogin<\/a>"],[100,1,"<a href=\"Form\/DataTransformer\/TagsDataTransformer.php.html#30\">App\\Form\\DataTransformer\\TagsDataTransformer::__construct<\/a>"],[100,3,"<a href=\"Form\/DataTransformer\/TagsDataTransformer.php.html#42\">App\\Form\\DataTransformer\\TagsDataTransformer::transform<\/a>"],[100,4,"<a href=\"Form\/DataTransformer\/TagsDataTransformer.php.html#64\">App\\Form\\DataTransformer\\TagsDataTransformer::reverseTransform<\/a>"],[100,1,"<a href=\"Form\/Type\/CategoryType.php.html#30\">App\\Form\\Type\\CategoryType::buildForm<\/a>"],[100,1,"<a href=\"Form\/Type\/CategoryType.php.html#48\">App\\Form\\Type\\CategoryType::configureOptions<\/a>"],[100,1,"<a href=\"Form\/Type\/CategoryType.php.html#61\">App\\Form\\Type\\CategoryType::getBlockPrefix<\/a>"],[0,1,"<a href=\"Form\/Type\/ChangePasswordType.php.html#29\">App\\Form\\Type\\ChangePasswordType::buildForm<\/a>"],[100,1,"<a href=\"Form\/Type\/CommentType.php.html#27\">App\\Form\\Type\\CommentType::buildForm<\/a>"],[100,1,"<a href=\"Form\/Type\/CommentType.php.html#47\">App\\Form\\Type\\CommentType::configureOptions<\/a>"],[100,1,"<a href=\"Form\/Type\/CommentType.php.html#57\">App\\Form\\Type\\CommentType::getBlockPrefix<\/a>"],[100,1,"<a href=\"Form\/Type\/PostType.php.html#31\">App\\Form\\Type\\PostType::__construct<\/a>"],[100,1,"<a href=\"Form\/Type\/PostType.php.html#44\">App\\Form\\Type\\PostType::buildForm<\/a>"],[100,1,"<a href=\"Form\/Type\/PostType.php.html#99\">App\\Form\\Type\\PostType::configureOptions<\/a>"],[100,1,"<a href=\"Form\/Type\/PostType.php.html#109\">App\\Form\\Type\\PostType::getBlockPrefix<\/a>"],[100,1,"<a href=\"Form\/Type\/RegistrationType.php.html#28\">App\\Form\\Type\\RegistrationType::buildForm<\/a>"],[100,1,"<a href=\"Form\/Type\/TagType.php.html#27\">App\\Form\\Type\\TagType::buildForm<\/a>"],[100,1,"<a href=\"Form\/Type\/TagType.php.html#47\">App\\Form\\Type\\TagType::configureOptions<\/a>"],[100,1,"<a href=\"Form\/Type\/TagType.php.html#57\">App\\Form\\Type\\TagType::getBlockPrefix<\/a>"],[100,1,"<a href=\"Repository\/CategoryRepository.php.html#39\">App\\Repository\\CategoryRepository::__construct<\/a>"],[100,1,"<a href=\"Repository\/CategoryRepository.php.html#49\">App\\Repository\\CategoryRepository::queryAll<\/a>"],[100,1,"<a href=\"Repository\/CategoryRepository.php.html#60\">App\\Repository\\CategoryRepository::save<\/a>"],[100,1,"<a href=\"Repository\/CategoryRepository.php.html#71\">App\\Repository\\CategoryRepository::delete<\/a>"],[100,1,"<a href=\"Repository\/CategoryRepository.php.html#84\">App\\Repository\\CategoryRepository::getOrCreateQueryBuilder<\/a>"],[100,1,"<a href=\"Repository\/CommentRepository.php.html#28\">App\\Repository\\CommentRepository::__construct<\/a>"],[0,1,"<a href=\"Repository\/CommentRepository.php.html#38\">App\\Repository\\CommentRepository::queryAll<\/a>"],[0,1,"<a href=\"Repository\/CommentRepository.php.html#49\">App\\Repository\\CommentRepository::save<\/a>"],[0,1,"<a href=\"Repository\/CommentRepository.php.html#60\">App\\Repository\\CommentRepository::delete<\/a>"],[100,1,"<a href=\"Repository\/PostRepository.php.html#44\">App\\Repository\\PostRepository::__construct<\/a>"],[100,1,"<a href=\"Repository\/PostRepository.php.html#54\">App\\Repository\\PostRepository::queryAll<\/a>"],[100,1,"<a href=\"Repository\/PostRepository.php.html#72\">App\\Repository\\PostRepository::save<\/a>"],[100,1,"<a href=\"Repository\/PostRepository.php.html#83\">App\\Repository\\PostRepository::delete<\/a>"],[100,1,"<a href=\"Repository\/PostRepository.php.html#99\">App\\Repository\\PostRepository::countByCategory<\/a>"],[100,1,"<a href=\"Repository\/PostRepository.php.html#117\">App\\Repository\\PostRepository::deleteCommentsForPost<\/a>"],[0,5,"<a href=\"Repository\/PostRepository.php.html#135\">App\\Repository\\PostRepository::applyFiltersToList<\/a>"],[100,1,"<a href=\"Repository\/PostRepository.php.html#157\">App\\Repository\\PostRepository::getOrCreateQueryBuilder<\/a>"],[100,1,"<a href=\"Repository\/TagRepository.php.html#41\">App\\Repository\\TagRepository::__construct<\/a>"],[100,1,"<a href=\"Repository\/TagRepository.php.html#51\">App\\Repository\\TagRepository::queryAll<\/a>"],[100,1,"<a href=\"Repository\/TagRepository.php.html#62\">App\\Repository\\TagRepository::save<\/a>"],[100,1,"<a href=\"Repository\/TagRepository.php.html#73\">App\\Repository\\TagRepository::delete<\/a>"],[100,1,"<a href=\"Repository\/TagRepository.php.html#86\">App\\Repository\\TagRepository::getOrCreateQueryBuilder<\/a>"],[100,1,"<a href=\"Repository\/UserRepository.php.html#36\">App\\Repository\\UserRepository::__construct<\/a>"],[100,1,"<a href=\"Repository\/UserRepository.php.html#46\">App\\Repository\\UserRepository::queryAll<\/a>"],[100,1,"<a href=\"Repository\/UserRepository.php.html#57\">App\\Repository\\UserRepository::save<\/a>"],[0,1,"<a href=\"Repository\/UserRepository.php.html#68\">App\\Repository\\UserRepository::delete<\/a>"],[100,1,"<a href=\"Repository\/UserRepository.php.html#81\">App\\Repository\\UserRepository::getOrCreateQueryBuilder<\/a>"],[100,1,"<a href=\"Security\/LoginFormAuthenticator.php.html#53\">App\\Security\\LoginFormAuthenticator::__construct<\/a>"],[100,2,"<a href=\"Security\/LoginFormAuthenticator.php.html#67\">App\\Security\\LoginFormAuthenticator::supports<\/a>"],[0,1,"<a href=\"Security\/LoginFormAuthenticator.php.html#90\">App\\Security\\LoginFormAuthenticator::authenticate<\/a>"],[0,2,"<a href=\"Security\/LoginFormAuthenticator.php.html#122\">App\\Security\\LoginFormAuthenticator::onAuthenticationSuccess<\/a>"],[100,1,"<a href=\"Security\/LoginFormAuthenticator.php.html#138\">App\\Security\\LoginFormAuthenticator::getLoginUrl<\/a>"],[100,1,"<a href=\"Security\/Voter\/CommentVoter.php.html#44\">App\\Security\\Voter\\CommentVoter::__construct<\/a>"],[100,2,"<a href=\"Security\/Voter\/CommentVoter.php.html#57\">App\\Security\\Voter\\CommentVoter::supports<\/a>"],[0,4,"<a href=\"Security\/Voter\/CommentVoter.php.html#73\">App\\Security\\Voter\\CommentVoter::voteOnAttribute<\/a>"],[0,1,"<a href=\"Security\/Voter\/CommentVoter.php.html#98\">App\\Security\\Voter\\CommentVoter::canEdit<\/a>"],[0,1,"<a href=\"Security\/Voter\/CommentVoter.php.html#111\">App\\Security\\Voter\\CommentVoter::canDelete<\/a>"],[100,1,"<a href=\"Security\/Voter\/UserVoter.php.html#43\">App\\Security\\Voter\\UserVoter::__construct<\/a>"],[100,2,"<a href=\"Security\/Voter\/UserVoter.php.html#56\">App\\Security\\Voter\\UserVoter::supports<\/a>"],[50,5,"<a href=\"Security\/Voter\/UserVoter.php.html#72\">App\\Security\\Voter\\UserVoter::voteOnAttribute<\/a>"],[100,1,"<a href=\"Service\/CategoryService.php.html#30\">App\\Service\\CategoryService::findOneById<\/a>"],[100,1,"<a href=\"Service\/CategoryService.php.html#57\">App\\Service\\CategoryService::__construct<\/a>"],[100,1,"<a href=\"Service\/CategoryService.php.html#71\">App\\Service\\CategoryService::getPaginatedList<\/a>"],[100,1,"<a href=\"Service\/CategoryService.php.html#85\">App\\Service\\CategoryService::save<\/a>"],[100,1,"<a href=\"Service\/CategoryService.php.html#95\">App\\Service\\CategoryService::delete<\/a>"],[50,2,"<a href=\"Service\/CategoryService.php.html#107\">App\\Service\\CategoryService::canBeDeleted<\/a>"],[100,1,"<a href=\"Service\/CommentService.php.html#28\">App\\Service\\CommentService::__construct<\/a>"],[0,2,"<a href=\"Service\/CommentService.php.html#39\">App\\Service\\CommentService::save<\/a>"],[0,1,"<a href=\"Service\/CommentService.php.html#53\">App\\Service\\CommentService::delete<\/a>"],[100,1,"<a href=\"Service\/PostService.php.html#46\">App\\Service\\PostService::__construct<\/a>"],[100,1,"<a href=\"Service\/PostService.php.html#64\">App\\Service\\PostService::getPaginatedList<\/a>"],[100,1,"<a href=\"Service\/PostService.php.html#80\">App\\Service\\PostService::save<\/a>"],[100,1,"<a href=\"Service\/PostService.php.html#90\">App\\Service\\PostService::delete<\/a>"],[100,1,"<a href=\"Service\/PostService.php.html#102\">App\\Service\\PostService::deletePostWithComments<\/a>"],[40,5,"<a href=\"Service\/PostService.php.html#116\">App\\Service\\PostService::prepareFilters<\/a>"],[100,1,"<a href=\"Service\/TagService.php.html#28\">App\\Service\\TagService::findOneById<\/a>"],[100,1,"<a href=\"Service\/TagService.php.html#49\">App\\Service\\TagService::__construct<\/a>"],[100,1,"<a href=\"Service\/TagService.php.html#62\">App\\Service\\TagService::getPaginatedList<\/a>"],[100,1,"<a href=\"Service\/TagService.php.html#76\">App\\Service\\TagService::save<\/a>"],[100,1,"<a href=\"Service\/TagService.php.html#86\">App\\Service\\TagService::delete<\/a>"],[0,1,"<a href=\"Service\/TagService.php.html#98\">App\\Service\\TagService::findOneByTitle<\/a>"],[100,1,"<a href=\"Service\/UserService.php.html#34\">App\\Service\\UserService::__construct<\/a>"],[100,1,"<a href=\"Service\/UserService.php.html#47\">App\\Service\\UserService::getPaginatedList<\/a>"],[0,1,"<a href=\"Service\/UserService.php.html#61\">App\\Service\\UserService::save<\/a>"],[0,1,"<a href=\"Service\/UserService.php.html#71\">App\\Service\\UserService::delete<\/a>"],[100,1,"<a href=\"Entity\/Enum\/UserRole.php.html#21\">App\\Entity\\Enum\\UserRole::label<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>
