@@ -87,7 +87,6 @@ class TagController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[IsGranted('ROLE_ADMIN')]
     #[Route(
         '/create',
         name: 'tag_create',
@@ -95,6 +94,12 @@ class TagController extends AbstractController
     )]
     public function create(Request $request): Response
     {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            $this->addFlash('warning', $this->translator->trans('message_action_impossible'));
+
+            return $this->redirectToRoute('post_index');
+        }
+
         $tag = new Tag();
         $form = $this->createForm(TagType::class, $tag);
         $form->handleRequest($request);
@@ -124,7 +129,6 @@ class TagController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[IsGranted('ROLE_ADMIN')]
     #[Route(
         '/{id}/edit',
         name: 'tag_edit',
@@ -133,6 +137,12 @@ class TagController extends AbstractController
     )]
     public function edit(Request $request, Tag $tag): Response
     {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            $this->addFlash('warning', $this->translator->trans('message_action_impossible'));
+
+            return $this->redirectToRoute('post_index');
+        }
+
         $form = $this->createForm(TagType::class, $tag, [
             'method' => 'PUT',
             'action' => $this->generateUrl('tag_edit', ['id' => $tag->getId()]),
@@ -167,7 +177,6 @@ class TagController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[IsGranted('ROLE_ADMIN')]
     #[Route(
         '/{id}/delete',
         name: 'tag_delete',
@@ -176,6 +185,12 @@ class TagController extends AbstractController
     )]
     public function delete(Request $request, Tag $tag): Response
     {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            $this->addFlash('warning', $this->translator->trans('message_action_impossible'));
+
+            return $this->redirectToRoute('post_index');
+        }
+
         $form = $this->createForm(FormType::class, $tag, [
             'method' => 'DELETE',
             'action' => $this->generateUrl('tag_delete', ['id' => $tag->getId()]),

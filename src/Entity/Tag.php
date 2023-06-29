@@ -37,6 +37,11 @@ class Tag
     #[Assert\length(min: 1, max: 45)]
     private ?string $title = null;
 
+    /**
+     * Posts.
+     *
+     * @var ArrayCollection
+     */
     #[ORM\ManyToMany(targetEntity: Post::class, mappedBy: 'tags')]
     private $posts;
 
@@ -92,6 +97,9 @@ class Tag
 
     /**
      * Remove post.
+     *
+     * @param Post $post
+     * @return void
      */
     public function removePost(Post $post): void
     {

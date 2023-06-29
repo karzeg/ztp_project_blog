@@ -42,9 +42,9 @@ class PostController extends AbstractController
     /**
      * Constructor.
      *
-     * @param PostServiceInterface $postService Post service
-     * @param TranslatorInterface  $translator  Translator
-     * @param CommentService $commentService Comment Service
+     * @param PostServiceInterface $postService    Post service
+     * @param TranslatorInterface  $translator     Translator
+     * @param CommentService       $commentService Comment Service
      */
     public function __construct(PostServiceInterface $postService, TranslatorInterface $translator, CommentService $commentService)
     {
@@ -81,10 +81,10 @@ class PostController extends AbstractController
     /**
      * Show action.
      *
-     * @param Request $request request
-     * @param Post $post Post entity
-     * @param CommentRepository $commentRepository param
-     * @param EntityManagerInterface $em param
+     * @param Request                $request           request
+     * @param Post                   $post              Post entity
+     * @param CommentRepository      $commentRepository param
+     * @param EntityManagerInterface $em                param
      *
      * @return Response HTTP response
      */
@@ -123,9 +123,7 @@ class PostController extends AbstractController
      *
      * @return Response HTTP response
      *
-     * @IsGranted("ROLE_ADMIN")
      */
-    #[IsGranted('ROLE_ADMIN')]
     #[Route(
         '/create',
         name: 'post_create',
@@ -133,6 +131,12 @@ class PostController extends AbstractController
     )]
     public function create(Request $request): Response
     {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            $this->addFlash('warning', $this->translator->trans('message_action_impossible'));
+
+            return $this->redirectToRoute('post_index');
+        }
+
         $post = new Post();
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
@@ -162,9 +166,7 @@ class PostController extends AbstractController
      *
      * @return Response HTTP response
      *
-     * @IsGranted("ROLE_ADMIN")
      */
-    #[IsGranted('ROLE_ADMIN')]
     #[Route(
         '/{id}/edit',
         name: 'post_edit',
@@ -173,6 +175,12 @@ class PostController extends AbstractController
     )]
     public function edit(Request $request, Post $post): Response
     {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            $this->addFlash('warning', $this->translator->trans('message_action_impossible'));
+
+            return $this->redirectToRoute('post_index');
+        }
+
         $form = $this->createForm(PostType::class, $post, [
             'method' => 'PUT',
             'action' => $this->generateUrl('post_edit', ['id' => $post->getId()]),
@@ -207,9 +215,7 @@ class PostController extends AbstractController
      *
      * @return Response HTTP response
      *
-     * @IsGranted("ROLE_ADMIN")
      */
-    #[IsGranted('ROLE_ADMIN')]
     #[Route(
         '/{id}/delete',
         name: 'post_delete',
@@ -218,6 +224,12 @@ class PostController extends AbstractController
     )]
     public function delete(Request $request, Post $post): Response
     {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            $this->addFlash('warning', $this->translator->trans('message_action_impossible'));
+
+            return $this->redirectToRoute('post_index');
+        }
+
         $form = $this->createForm(FormType::class, $post, [
             'method' => 'DELETE',
             'action' => $this->generateUrl('post_delete', ['id' => $post->getId()]),
@@ -225,6 +237,7 @@ class PostController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $this->postService->deletePostWithComments($post);
             $this->postService->delete($post);
 
             $this->addFlash(

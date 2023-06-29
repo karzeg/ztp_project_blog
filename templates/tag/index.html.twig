@@ -7,9 +7,11 @@
 {% block body %}
     <h1>{{ 'title.tag_list'|trans }}</h1>
     <p>
+        {% if is_granted('ROLE_ADMIN') %}
         <a href="{{ url('tag_create') }}" title="{{ 'action.create'|trans }}">
             {{ 'action.create'|trans }}
         </a>
+        {% endif %}
     </p>
     {% if pagination is defined and pagination.items|length %}
         <table class="table table-hover">

@@ -14,9 +14,6 @@
             <dd>{{ user.login }}</dd>
         </dl>
         <br>
-        <p>
-            DODAC MOZLIWOSC ZMIANY LOGINU
-        </p>
 
         {% if is_granted('EDIT', user) %}
         <p>
@@ -27,7 +24,7 @@
         {% endif %}
 
         <p>
-            <a href="{{ url('user_index') }}" title="{{ 'action.back_to_list'|trans }}">
+            <a href="{{ url('post_index') }}" title="{{ 'action.back_to_list'|trans }}">
                 {{ 'action.back_to_list'|trans }}
             </a>
         </p>

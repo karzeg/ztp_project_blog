@@ -177,6 +177,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
      *
      * @see UserInterface
+     *
+     * @return string|null
      */
     public function getSalt(): ?string
     {
@@ -194,12 +196,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
+    /**
+     * Getter for login.
+     *
+     * @return string|null
+     */
     public function getLogin(): ?string
     {
         return $this->login;
     }
 
     /**
+     * Setter for login.
+     *
+     * @param string|null $login
+     *
      * @return $this
      */
     public function setLogin(?string $login): self

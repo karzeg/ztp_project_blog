@@ -11,7 +11,6 @@ use App\Form\Type\UserType;
 use App\Service\UserServiceInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -53,10 +52,14 @@ class UserController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[IsGranted('ROLE_ADMIN')]
     #[Route(name: 'user_index', methods: 'GET')]
     public function index(Request $request): Response
     {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            $this->addFlash('warning', $this->translator->trans('message_action_impossible'));
+
+            return $this->redirectToRoute('post_index');
+        }
         $pagination = $this->userService->getPaginatedList(
             $request->query->getInt('page', 1)
         );
@@ -79,7 +82,26 @@ class UserController extends AbstractController
     )]
     public function show(User $user): Response
     {
-        return $this->render('user/show.html.twig', ['user' => $user]);
+        $log = $this->getUser();
+        if ($this->isGranted('ROLE_ADMIN')) {
+            return $this->render(
+                'user/show.html.twig',
+                ['user' => $user]
+            );
+        }
+        if ($user === $log) {
+            return $this->render(
+                'user/show.html.twig',
+                ['user' => $log]
+            );
+        }
+        if ($user !== $log) {
+            $this->addFlash('warning', $this->translator->trans('message_action_impossible'));
+
+            return $this->redirectToRoute('post_index');
+        }
+
+        return true;
     }
 
     /**
@@ -118,22 +140,39 @@ class UserController extends AbstractController
     }
 
     /**
-     * Change password action.
+     * Change Password action.
+     *
+     * @param Request                     $request
+     * @param User                        $user
+     * @param UserPasswordHasherInterface $passwordHasher
+     *
+     * @return Response
      */
     #[Route('/{id}/change_password', name: 'change_password', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
-    #[IsGranted('VIEW', subject: 'user')]
     public function changePassword(Request $request, User $user, UserPasswordHasherInterface $passwordHasher): Response
     {
+        $loggedInUser = $this->getUser();
+        // Check if the logged-in user is not null and has the necessary permissions
+        if ($loggedInUser !== $user) {
+            // Handle the case when the user is not authorized to edit this user
+            // Redirect or show an error message
+            // For example:
+            $this->addFlash(
+                'warning',
+                $this->translator->trans('message_action_impossible')
+            );
+
+            return $this->redirectToRoute('post_index');
+        }
+
         $form = $this->createForm(ChangePasswordType::class, $user, ['method' => 'PUT',
             'action' => $this->generateUrl('change_password', ['id' => $user->getId()]),
-            ]);
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setPassword($passwordHasher->hashPassword($user, $form->get('password')->getData()));
-
             $this->userService->save($user);
-
             $this->addFlash(
                 'success',
                 $this->translator->trans('message.password_edited_successfully')

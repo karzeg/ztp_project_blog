@@ -1,4 +1,7 @@
 <?php
+/**
+ * Security Voter.
+ */
 
 namespace App\Security\Voter;
 
@@ -13,7 +16,6 @@ use Symfony\Component\Security\Core\Security;
  */
 class UserVoter extends Voter
 {
-
     /**
      * Edit permission.
      *
@@ -30,8 +32,6 @@ class UserVoter extends Voter
 
     /**
      * Security helper.
-     *
-     * @var Security
      */
     private Security $security;
 

@@ -39,9 +39,9 @@ class PostService implements PostServiceInterface
      * Constructor.
      *
      * @param CategoryServiceInterface $categoryService Category service
-     * @param PaginatorInterface $paginator      Paginator
+     * @param PaginatorInterface       $paginator       Paginator
      * @param TagServiceInterface      $tagService      Tag service
-     * @param PostRepository     $postRepository Post repository
+     * @param PostRepository           $postRepository  Post repository
      */
     public function __construct(CategoryServiceInterface $categoryService, PaginatorInterface $paginator, TagServiceInterface $tagService, PostRepository $postRepository)
     {
@@ -52,40 +52,13 @@ class PostService implements PostServiceInterface
     }
 
     /**
-     * Prepare filters for the posts list.
-     *
-     * @param array<string, int> $filters Raw filters from request
-     *
-     * @return array<string, object> Result array of filters
-     * @throws \Doctrine\ORM\NonUniqueResultException
-     */
-    private function prepareFilters(array $filters): array
-    {
-        $resultFilters = [];
-        if (!empty($filters['category_id'])) {
-            $category = $this->categoryService->findOneById($filters['category_id']);
-            if (null !== $category) {
-                $resultFilters['category'] = $category;
-            }
-        }
-
-        if (!empty($filters['tag_id'])) {
-            $tag = $this->tagService->findOneById($filters['tag_id']);
-            if (null !== $tag) {
-                $resultFilters['tag'] = $tag;
-            }
-        }
-
-        return $resultFilters;
-    }
-
-    /**
      * Get paginated list.
      *
-     * @param int $page Page number
+     * @param int                $page    Page number
      * @param array<string, int> $filters Filters array
      *
      * @return PaginationInterface<string, mixed> Paginated list
+     *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function getPaginatedList(int $page, array $filters = []): PaginationInterface
@@ -117,5 +90,46 @@ class PostService implements PostServiceInterface
     public function delete(Post $post): void
     {
         $this->postRepository->delete($post);
+    }
+
+    /**
+     * Delete post with comments.
+     *
+     * @param Post $post
+     *
+     * @return void
+     */
+    public function deletePostWithComments(Post $post): void
+    {
+        $this->postRepository->deleteCommentsForPost($post);
+    }
+
+    /**
+     * Prepare filters for the posts list.
+     *
+     * @param array<string, int> $filters Raw filters from request
+     *
+     * @return array<string, object> Result array of filters
+     *
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    private function prepareFilters(array $filters): array
+    {
+        $resultFilters = [];
+        if (!empty($filters['category_id'])) {
+            $category = $this->categoryService->findOneById($filters['category_id']);
+            if (null !== $category) {
+                $resultFilters['category'] = $category;
+            }
+        }
+
+        if (!empty($filters['tag_id'])) {
+            $tag = $this->tagService->findOneById($filters['tag_id']);
+            if (null !== $tag) {
+                $resultFilters['tag'] = $tag;
+            }
+        }
+
+        return $resultFilters;
     }
 }

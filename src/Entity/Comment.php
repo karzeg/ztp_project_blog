@@ -35,9 +35,6 @@ class Comment
     #[Assert\Length(min: 3, max: 65000)]
     private ?string $content = null;
 
-    /**
-     * @var DateTimeImmutable|null
-     */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\Type(\DateTimeImmutable::class)]
     #[Gedmo\Timestampable(on: 'create')]
@@ -91,6 +88,8 @@ class Comment
 
     /**
      * Getter for date.
+     *
+     * @return DateTimeImmutable|null
      */
     public function getDate(): ?\DateTimeImmutable
     {
@@ -100,7 +99,7 @@ class Comment
     /**
      * Setter for date.
      *
-     * @param DateTimeImmutable $date Date
+     * @param \DateTimeImmutable $date Date
      */
     public function setDate(\DateTimeImmutable $date): void
     {
@@ -120,6 +119,8 @@ class Comment
     /**
      * Setter for Post.
      *
+     * @param Post|null $post
+     *
      * @return $this
      */
     public function setPost(?Post $post): self
@@ -131,6 +132,8 @@ class Comment
 
     /**
      * Getter for Author.
+     *
+     * @return User|null
      */
     public function getAuthor(): ?User
     {
@@ -139,6 +142,8 @@ class Comment
 
     /**
      * Setter for Author.
+     *
+     * @param User|null $author
      *
      * @return $this
      */

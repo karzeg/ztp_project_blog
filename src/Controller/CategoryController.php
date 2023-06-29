@@ -89,7 +89,6 @@ class CategoryController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[IsGranted('ROLE_ADMIN')]
     #[Route(
         '/create',
         name: 'category_create',
@@ -97,6 +96,12 @@ class CategoryController extends AbstractController
     )]
     public function create(Request $request): Response
     {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            $this->addFlash('warning', $this->translator->trans('message_action_impossible'));
+
+            return $this->redirectToRoute('post_index');
+        }
+
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
@@ -126,10 +131,15 @@ class CategoryController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/edit', name: 'category_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     public function edit(Request $request, Category $category): Response
     {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            $this->addFlash('warning', $this->translator->trans('message_action_impossible'));
+
+            return $this->redirectToRoute('post_index');
+        }
+
         $form = $this->createForm(CategoryType::class, $category, [
             'method' => 'PUT',
             'action' => $this->generateUrl('category_edit', ['id' => $category->getId()]),
@@ -164,10 +174,15 @@ class CategoryController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/delete', name: 'category_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     public function delete(Request $request, Category $category): Response
     {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            $this->addFlash('warning', $this->translator->trans('message_action_impossible'));
+
+            return $this->redirectToRoute('post_index');
+        }
+
         if (!$this->categoryService->canBeDeleted($category)) {
             $this->addFlash(
                 'warning',

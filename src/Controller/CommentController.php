@@ -37,8 +37,8 @@ class CommentController extends AbstractController
     /**
      * Constructor.
      *
-     * @param CommentServiceInterface $commentService Comment service
-     * @param TranslatorInterface     $translator     Translator
+     * @param CommentServiceInterface $commentService
+     * @param TranslatorInterface     $translator
      */
     public function __construct(CommentServiceInterface $commentService, TranslatorInterface $translator)
     {
@@ -49,8 +49,9 @@ class CommentController extends AbstractController
     /**
      * Create action.
      *
-     * @param Request $request HTTP request
-     * @param $post Post entity
+     * @param Request           $request           HTTP request
+     * @param Post              $post              Post entity
+     * @param CommentRepository $commentRepository Comment Repository
      *
      * @return Response HTTP response
      */
@@ -142,7 +143,6 @@ class CommentController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[IsGranted('ROLE_ADMIN')]
     #[Route(
         '/{id}/delete',
         name: 'comment_delete',
@@ -151,6 +151,12 @@ class CommentController extends AbstractController
     )]
     public function delete(Request $request, Comment $comment): Response
     {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            $this->addFlash('warning', $this->translator->trans('message_action_impossible'));
+
+            return $this->redirectToRoute('post_index');
+        }
+
         $form = $this->createForm(FormType::class, $comment, [
             'method' => 'DELETE',
             'action' => $this->generateUrl('comment_delete', ['id' => $comment->getId()]),
@@ -159,7 +165,6 @@ class CommentController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->commentService->delete($comment);
-
             $this->addFlash(
                 'success',
                 $this->translator->trans('message.deleted_successfully')

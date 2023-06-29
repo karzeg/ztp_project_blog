@@ -134,6 +134,8 @@ class Post
 
     /**
      * Getter for Title.
+     *
+     * @return string|null
      */
     public function getTitle(): ?string
     {
@@ -142,6 +144,10 @@ class Post
 
     /**
      * Setter for Title.
+     *
+     * @param string $title
+     *
+     * @return void
      */
     public function setTitle(string $title): void
     {
@@ -150,6 +156,8 @@ class Post
 
     /**
      * Getter for category.
+     *
+     * @return Category|null
      */
     public function getCategory(): ?Category
     {
@@ -158,6 +166,10 @@ class Post
 
     /**
      * Setter for category.
+     *
+     * @param Category|null $category
+     *
+     * @return void
      */
     public function setCategory(?Category $category): void
     {
@@ -188,6 +200,10 @@ class Post
 
     /**
      * Remove tag.
+     *
+     * @param Tag $tag
+     *
+     * @return void
      */
     public function removeTag(Tag $tag): void
     {

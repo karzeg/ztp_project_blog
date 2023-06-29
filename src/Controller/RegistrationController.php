@@ -38,11 +38,14 @@ class RegistrationController extends AbstractController
     }
 
     /**
-     * @param Request $request
-     * @param UserRepository $userRepository
+     * Registration.
+     *
+     * @param Request                     $request
+     * @param UserRepository              $userRepository
      * @param UserPasswordHasherInterface $passwordHasher
-     * @param UserAuthenticatorInterface $userAuthenticator
-     * @param LoginFormAuthenticator $formAuthenticator
+     * @param UserAuthenticatorInterface  $userAuthenticator
+     * @param LoginFormAuthenticator      $formAuthenticator
+     *
      * @return Response
      */
     #[Route(
