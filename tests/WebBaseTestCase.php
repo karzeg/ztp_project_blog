@@ -103,10 +103,10 @@ class WebBaseTestCase extends WebTestCase
      *
      * @return Tag
      */
-    protected function createTag(): Tag
+    protected function createTag($name = 'TestTag'): Tag
     {
         $tag = new Tag();
-        $tag->setTitle('TestTag');
+        $tag->setTitle($name);
         $tagRepository = self::getContainer()->get(TagRepository::class);
         $tagRepository->save($tag);
 

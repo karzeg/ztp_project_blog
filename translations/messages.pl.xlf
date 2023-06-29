@@ -266,6 +266,10 @@
         <source>label_sign-in</source>
         <target>Zarejestruj</target>
       </trans-unit>
+      <trans-unit id="message_action_impossible">
+        <source>message_action_impossible</source>
+        <target>Niedozwolone działanie</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

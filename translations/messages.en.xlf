@@ -259,17 +259,21 @@
         <target>Repeat new password</target>
       </trans-unit>
       <trans-unit id="action_registration">
-              <source>action_registration</source>
-              <target>Registration</target>
-            </trans-unit>
+        <source>action_registration</source>
+        <target>Registration</target>
+      </trans-unit>
       <trans-unit id="label_password">
-              <source>label_password</source>
-              <target>Password</target>
-            </trans-unit>
+        <source>label_password</source>
+        <target>Password</target>
+      </trans-unit>
       <trans-unit id="label_sign-in">
-              <source>label_sign-in</source>
-              <target>Sign in</target>
-            </trans-unit>
+        <source>label_sign-in</source>
+        <target>Sign in</target>
+      </trans-unit>
+      <trans-unit id="message_action_impossible">
+        <source>message_action_impossible</source>
+        <target>Action impossible</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

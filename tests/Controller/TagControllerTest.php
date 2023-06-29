@@ -6,6 +6,8 @@
 namespace App\Tests\Controller;
 
 use App\Entity\Enum\UserRole;
+use App\Entity\Post;
+use App\Entity\User;
 use App\Entity\Tag;
 use App\Repository\TagRepository;
 use App\Tests\WebBaseTestCase;
@@ -225,10 +227,6 @@ class TagControllerTest extends WebBaseTestCase
 
 
     /**
-     * @throws OptimisticLockException
-     * @throws NotFoundExceptionInterface
-     * @throws ORMException
-     * @throws ContainerExceptionInterface
      */
     public function testNewRoutAdminUser(): void
     {
@@ -243,35 +241,32 @@ class TagControllerTest extends WebBaseTestCase
         $this->assertEquals(301, $this->httpClient->getResponse()->getStatusCode());
     }
 
-//    /**
-//     * @return void
-//     */
-//    public function testDeleteTag(): void
-//    {
-//        //given
-//        $user = null;
-//        try {
-//            $user = $this->createUser([UserRole::ROLE_ADMIN->value],
-//                'tag_deleted_user1@example.com');
-//        } catch (OptimisticLockException|ORMException|ContainerExceptionInterface $e) {
-//        }
-//        $this->httpClient->loginUser($user);
-//
-//        $tagRepository =
-//            static::getContainer()->get(TagRepository::class);
-//        $testTag = new Tag();
-//        $testTag->setTitle('TestTagCreated');
-//        $tagRepository->save($testTag);
-//        $testTagId = $testTag->getId();
-//
-//        $this->httpClient->request('GET', self::TEST_ROUTE . '/' . $testTagId . '/delete');
-//
-//        //when
-//        $this->httpClient->submitForm(
-//            'Usuń'
-//        );
-//
-//        //then
-//        $this->assertNull($tagRepository->findOneByTitle('TestTagCreated'));
-//    }
+    /**
+     * @return void
+     */
+    public function testDeleteTag(): void
+    {
+        // given
+        $user = null;
+        try {
+            $user = $this->createUser([UserRole::ROLE_ADMIN->value, UserRole::ROLE_USER->value],
+                'tag_deleted_user1@example.com');
+        } catch (OptimisticLockException|ORMException|ContainerExceptionInterface $e) {
+        }
+        $this->httpClient->loginUser($user);
+
+        $tagRepository =
+            static::getContainer()->get(TagRepository::class);
+        $testTag = $this->createTag('TestTagCreated');
+
+        $this->httpClient->request('GET', self::TEST_ROUTE . '/' . $testTag->getId() . '/delete');
+
+        //when
+        $this->httpClient->submitForm(
+            'Usuń'
+        );
+
+        // then
+        $this->assertNull($tagRepository->findOneByTitle('TestTagCreated'));
+    }
 }

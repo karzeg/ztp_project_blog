@@ -240,10 +240,12 @@ class CategoryControllerTest extends WebBaseTestCase
         $testCategory->setTitle('TestCategoryCreated2');
         $categoryRepository->save($testCategory);
         $testCategoryId = $testCategory->getId();
+        $this->createPost($user, $testCategory);
 
         $this->httpClient->request('GET', self::TEST_ROUTE . '/' . $testCategoryId . '/delete');
 
-        $this->assertEquals(200, $this->httpClient->getResponse()->getStatusCode());
+        $this->assertEquals(302, $this->httpClient->getResponse()->getStatusCode());
         $this->assertNotNull($categoryRepository->findOneByTitle('TestCategoryCreated2'));
     }
+
 }
