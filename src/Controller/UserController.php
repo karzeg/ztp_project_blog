@@ -117,84 +117,11 @@ class UserController extends AbstractController
         );
     }
 
-//    /**
-//     * Edit action.
-//     *
-//     * @param Request  $request  HTTP request
-//     * @param User $index.html.twig User entity
-//     *
-//     * @return Response HTTP response
-//     */
-//    #[Route('/{id}/edit', name: 'user_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
-//    public function edit(Request $request, User $index.html.twig): Response
-//    {
-//        $form = $this->createForm(UserType::class, $index.html.twig, [
-//            'method' => 'PUT',
-//            'action' => $this->generateUrl('user_edit', ['id' => $index.html.twig->getId()]),
-//        ]);
-//        $form->handleRequest($request);
-//
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            $this->userService->save($index.html.twig);
-//
-//            $this->addFlash(
-//                'success',
-//                $this->translator->trans('message.created_successfully')
-//            );
-//
-//            return $this->redirectToRoute('user_index');
-//        }
-//
-//        return $this->render(
-//            'index.html.twig/show.html.twig',
-//            [
-//                'form' => $form->createView(),
-//                'index.html.twig' => $index.html.twig,
-//            ]
-//        );
-//    }
-//
-//    /**
-//     * Delete action.
-//     *
-//     * @param Request  $request  HTTP request
-//     * @param User $index.html.twig User entity
-//     *
-//     * @return Response HTTP response
-//     */
-//    #[Route('/{id}/delete', name: 'user_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
-//    public function delete(Request $request, User $index.html.twig): Response
-//    {
-//        $form = $this->createForm(FormType::class, $index.html.twig, [
-//            'method' => 'DELETE',
-//            'action' => $this->generateUrl('user_delete', ['id' => $index.html.twig->getId()]),
-//        ]);
-//        $form->handleRequest($request);
-//
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            $this->userService->delete($index.html.twig);
-//
-//            $this->addFlash(
-//                'success',
-//                $this->translator->trans('message.deleted_successfully')
-//            );
-//
-//            return $this->redirectToRoute('user_index');
-//        }
-//
-//        return $this->render(
-//            'index.html.twig/delete.html.twig',
-//            [
-//                'form' => $form->createView(),
-//                'index.html.twig' => $index.html.twig,
-//            ]
-//        );
-//    }
-
     /**
      * Change password action.
      */
     #[Route('/{id}/change_password', name: 'change_password', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    #[IsGranted('VIEW', subject: 'user')]
     public function changePassword(Request $request, User $user, UserPasswordHasherInterface $passwordHasher): Response
     {
         $form = $this->createForm(ChangePasswordType::class, $user, ['method' => 'PUT',

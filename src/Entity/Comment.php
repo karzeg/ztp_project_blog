@@ -49,7 +49,7 @@ class Comment
      * @var Post|null
      */
     #[ORM\ManyToOne(targetEntity: Post::class, fetch: 'EXTRA_LAZY')]
-    #[Assert\Type(Comment::class)]
+    #[Assert\Type(Post::class)]
     private $post;
 
     /**

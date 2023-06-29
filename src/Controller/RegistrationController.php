@@ -37,6 +37,14 @@ class RegistrationController extends AbstractController
         $this->translator = $translator;
     }
 
+    /**
+     * @param Request $request
+     * @param UserRepository $userRepository
+     * @param UserPasswordHasherInterface $passwordHasher
+     * @param UserAuthenticatorInterface $userAuthenticator
+     * @param LoginFormAuthenticator $formAuthenticator
+     * @return Response
+     */
     #[Route(
         '/registration',
         name: 'app_register',

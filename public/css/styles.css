@@ -5,3 +5,28 @@
     margin: auto;
     text-align: center;
 }
+
+.container-fluid form
+{
+    display: block;
+    width: 80em;
+    margin: auto;
+    text-align: center;
+}
+
+.container-fluid form input
+{
+    margin: 0.5em;
+}
+
+.container-fluid form label
+{
+    font-size: 18px;
+    margin-top: 0.4em;
+}
+
+.container-fluid form button
+{
+    padding: 0.5em;
+    font-size: 16px;
+}

@@ -7,6 +7,7 @@ namespace App\Repository;
 
 use App\Entity\Category;
 use App\Entity\Post;
+use App\Entity\Tag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
@@ -47,6 +48,8 @@ class PostRepository extends ServiceEntityRepository
     /**
      * Query all records.
      *
+     * @param array<string, object> $filters Filters
+     *
      * @return QueryBuilder Query builder
      */
     public function queryAll(): QueryBuilder
@@ -54,10 +57,36 @@ class PostRepository extends ServiceEntityRepository
         return $this->getOrCreateQueryBuilder()
             ->select(
                 'partial post.{id, title, date}',
-                'partial category.{id, title}'
+                'partial category.{id, title}',
+                'partial tags.{id, title}'
             )
             ->join('post.category', 'category')
+            ->leftJoin('post.tags', 'tags')
+            ->leftJoin('post.comments', 'comments')
             ->orderBy('post.date', 'DESC');
+    }
+
+    /**
+     * Apply filters to paginated list.
+     *
+     * @param QueryBuilder          $queryBuilder Query builder
+     * @param array<string, object> $filters      Filters array
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function applyFiltersToList(QueryBuilder $queryBuilder, array $filters = []): QueryBuilder
+    {
+        if (isset($filters['category']) && $filters['category'] instanceof Category) {
+            $queryBuilder->andWhere('category = :category')
+                ->setParameter('category', $filters['category']);
+        }
+
+        if (isset($filters['tag']) && $filters['tag'] instanceof Tag) {
+            $queryBuilder->andWhere('tags IN (:tag)')
+                ->setParameter('tag', $filters['tag']);
+        }
+
+        return $queryBuilder;
     }
 
     /**

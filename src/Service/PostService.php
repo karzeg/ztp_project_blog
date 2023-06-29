@@ -16,9 +16,9 @@ use Knp\Component\Pager\PaginatorInterface;
 class PostService implements PostServiceInterface
 {
     /**
-     * Post repository.
+     * Category service.
      */
-    private PostRepository $postRepository;
+    private CategoryServiceInterface $categoryService;
 
     /**
      * Paginator.
@@ -26,26 +26,72 @@ class PostService implements PostServiceInterface
     private PaginatorInterface $paginator;
 
     /**
+     * Tag service.
+     */
+    private TagServiceInterface $tagService;
+
+    /**
+     * Post repository.
+     */
+    private PostRepository $postRepository;
+
+    /**
      * Constructor.
      *
-     * @param PostRepository     $postRepository Post repository
+     * @param CategoryServiceInterface $categoryService Category service
      * @param PaginatorInterface $paginator      Paginator
+     * @param TagServiceInterface      $tagService      Tag service
+     * @param PostRepository     $postRepository Post repository
      */
-    public function __construct(PostRepository $postRepository, PaginatorInterface $paginator)
+    public function __construct(CategoryServiceInterface $categoryService, PaginatorInterface $paginator, TagServiceInterface $tagService, PostRepository $postRepository)
     {
-        $this->postRepository = $postRepository;
+        $this->categoryService = $categoryService;
         $this->paginator = $paginator;
+        $this->tagService = $tagService;
+        $this->postRepository = $postRepository;
+    }
+
+    /**
+     * Prepare filters for the posts list.
+     *
+     * @param array<string, int> $filters Raw filters from request
+     *
+     * @return array<string, object> Result array of filters
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    private function prepareFilters(array $filters): array
+    {
+        $resultFilters = [];
+        if (!empty($filters['category_id'])) {
+            $category = $this->categoryService->findOneById($filters['category_id']);
+            if (null !== $category) {
+                $resultFilters['category'] = $category;
+            }
+        }
+
+        if (!empty($filters['tag_id'])) {
+            $tag = $this->tagService->findOneById($filters['tag_id']);
+            if (null !== $tag) {
+                $resultFilters['tag'] = $tag;
+            }
+        }
+
+        return $resultFilters;
     }
 
     /**
      * Get paginated list.
      *
      * @param int $page Page number
+     * @param array<string, int> $filters Filters array
      *
      * @return PaginationInterface<string, mixed> Paginated list
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function getPaginatedList(int $page): PaginationInterface
+    public function getPaginatedList(int $page, array $filters = []): PaginationInterface
     {
+        $filters = $this->prepareFilters($filters);
+
         return $this->paginator->paginate(
             $this->postRepository->queryAll(),
             $page,
