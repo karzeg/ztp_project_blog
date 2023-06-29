@@ -14,6 +14,7 @@ parameters:
 
 {% block body %}
     <h1>{{ page_title }}</h1>
+    <div class="form">
     {{ form_start(form) }}
     {% if false == form.vars.valid %}
         {% include 'default/_single_alert_message.html.twig' with {
@@ -33,4 +34,5 @@ parameters:
         </div>
     {% endif %}
     {{ form_end(form) }}
+    </div>
 {% endblock %}

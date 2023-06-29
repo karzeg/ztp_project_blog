@@ -175,9 +175,9 @@
         <target>Comments</target>
       </trans-unit>
       <trans-unit id="label_posts">
-              <source>label_posts</source>
-              <target>Posts</target>
-            </trans-unit>
+        <source>label_posts</source>
+        <target>Posts</target>
+      </trans-unit>
       <trans-unit id="label_categories">
         <source>label_categories</source>
         <target>Categories</target>
@@ -250,6 +250,26 @@
         <source>action.change_password</source>
         <target>Change password</target>
       </trans-unit>
+      <trans-unit id="label_new_password">
+        <source>label_new_password</source>
+        <target>New password</target>
+      </trans-unit>
+      <trans-unit id="label_repeat_password">
+        <source>label_repeat_password</source>
+        <target>Repeat new password</target>
+      </trans-unit>
+      <trans-unit id="action_registration">
+              <source>action_registration</source>
+              <target>Registration</target>
+            </trans-unit>
+      <trans-unit id="label_password">
+              <source>label_password</source>
+              <target>Password</target>
+            </trans-unit>
+      <trans-unit id="label_sign-in">
+              <source>label_sign-in</source>
+              <target>Sign in</target>
+            </trans-unit>
     </body>
   </file>
 </xliff>

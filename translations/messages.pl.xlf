@@ -64,7 +64,7 @@
       </trans-unit>
       <trans-unit id="title.category_edit">
         <source>title.category_edit</source>
-        <target>EDytuj kategorię</target>
+        <target>Edytuj kategorię</target>
       </trans-unit>
       <trans-unit id="title.category_create">
         <source>title.category_create</source>
@@ -245,6 +245,26 @@
       <trans-unit id="action.change_password">
         <source>action.change_password</source>
         <target>Zmień hasło</target>
+      </trans-unit>
+      <trans-unit id="label_new_password">
+        <source>label_new_password</source>
+        <target>Nowe hasło</target>
+      </trans-unit>
+      <trans-unit id="label_repeat_password">
+        <source>label_repeat_password</source>
+        <target>Powtórz nowe hasło</target>
+      </trans-unit>
+      <trans-unit id="action_registration">
+        <source>action_registration</source>
+        <target>Rejestracja</target>
+      </trans-unit>
+      <trans-unit id="label_password">
+        <source>label_password</source>
+        <target>Hasło</target>
+      </trans-unit>
+      <trans-unit id="label_sign-in">
+        <source>label_sign-in</source>
+        <target>Zarejestruj</target>
       </trans-unit>
     </body>
   </file>

@@ -31,7 +31,11 @@
                     <td>{{ post.id }}</td>
                     <td>{{ post.date|date('d/m/Y') }}</td>
                     <td>{{ post.title }}</td>
-                    <td>{{ post.category.title }}</td>
+                    <td>
+                        <a href="{{ url('post_index', {'filters.category_id' : post.category.id}) }}" title="{{ post.category.title }}">
+                            {{ post.category.title }}
+                        </a>
+                    </td>
                     <td>
                         <a href="{{ url('post_show', {id: post.id}) }}" title="{{ 'action.view'|trans }}">
                             <svg class="bi bi-eye" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

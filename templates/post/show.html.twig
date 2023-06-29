@@ -19,17 +19,23 @@
             <dd>{{  post.content }}</dd>
             <dt>{{ 'label.category'|trans }}</dt>
             <dd>
-                    <a href="{{ url('category_show', {id: post.category.id}) }}" title="{{ 'category_show'|trans }}">
-                        {{ post.category.title }}
-                    </a>
+
+                <a href="{{ url('post_index', {'filters.category_id' : post.category.id}) }}" title="{{ post.category.title }}">
+                    {{ post.category.title }}
+                </a>
+
             </dd>
             <dt>{{ 'label.tags'|trans }}</dt>
             <dd>
-                {% for tag in post.tags %}
-                    <a href="{{ url('tag_show', {id: tag.id}) }}" title="{{ 'tag_show'|trans }}">
-                        {{ tag.title }}{{ ',' }}
-                    </a>
-                {% endfor %}
+                {% if post.tags is defined and post.tags|length %}
+                    {% for tag in post.tags %}
+                        <a href="{{ url('post_index', {'filters.tag_id' : tag.id}) }}" title="{{ tag.title }}">
+                            {{ tag.title }}
+                        </a>
+                    {% endfor %}
+                {% else %}
+                    &nbsp;
+                {% endif %}
             </dd>
         </dl>
         <br>

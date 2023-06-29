@@ -99,6 +99,21 @@ class WebBaseTestCase extends WebTestCase
     }
 
     /**
+     * Create Tag.
+     *
+     * @return Tag
+     */
+    protected function createTag(): Tag
+    {
+        $tag = new Tag();
+        $tag->setTitle('TestTag');
+        $tagRepository = self::getContainer()->get(TagRepository::class);
+        $tagRepository->save($tag);
+
+        return $tag;
+    }
+
+    /**
      * Create Comment.
      */
     protected function createComment(): Comment
@@ -114,28 +129,15 @@ class WebBaseTestCase extends WebTestCase
     /**
      * Create Post.
      */
-    protected function createPost(User $user, Category $category, Tag $tag): Post
+    protected function createPost(User $user, Category $category): Post
     {
         $post = new Post();
-        $post->setTitle('PName');
-        $post->setContent('PContent');
+        $post->setTitle('TestTitle');
+        $post->setContent('TestContent');
         $post->setCategory($category);
         $postRepository = self::getContainer()->get(PostRepository::class);
         $postRepository->save($post, true);
 
         return $post;
-    }
-
-    /**
-     * Create Tag.
-     */
-    protected function createTag(): Tag
-    {
-        $tag = new Tag();
-        $tag->setTitle('TestTag');
-        $tagRepository = self::getContainer()->get(TagRepository::class);
-        $tagRepository->save($tag);
-
-        return $tag;
     }
 }
