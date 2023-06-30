@@ -38,7 +38,9 @@ class CommentRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            ->orderBy('comment.date', 'ASC');
+            ->select('comment', 'partial posts.{id}')
+            ->join('comment.posts', 'posts')
+            ->orderBy('comment.date', 'DESC');
     }
 
     /**
@@ -61,5 +63,17 @@ class CommentRepository extends ServiceEntityRepository
     {
         $this->_em->remove($comment);
         $this->_em->flush();
+    }
+
+    /**
+     * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder Query builder
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('comment');
     }
 }

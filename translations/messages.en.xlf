@@ -274,6 +274,14 @@
         <source>message_action_impossible</source>
         <target>Action impossible</target>
       </trans-unit>
+      <trans-unit id="label.different_passwords">
+              <source>label.different_passwords</source>
+              <target>Different passwords</target>
+            </trans-unit>
+      <trans-unit id="label.different_pass">
+                                <source>label.different_pass</source>
+                                <target>Different passwords</target>
+                              </trans-unit>
     </body>
   </file>
 </xliff>

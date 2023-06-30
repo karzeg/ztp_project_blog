@@ -78,7 +78,7 @@ class UserVoter extends Voter
 
         switch ($attribute) {
             case self::EDIT:
-                if ($subject->getId() === $user->getId()) {
+                if ($subject === $user || $this->security->isGranted('ROLE_ADMIN', $user)) {
                     return true;
                 }
                 break;

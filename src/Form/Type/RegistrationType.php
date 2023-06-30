@@ -53,8 +53,8 @@ class RegistrationType extends AbstractType
             [
                 'type' => PasswordType::class,
                 'invalid_message' => 'label.different_pass',
-                'first_options' => ['label' => 'new.password'],
-                'second_options' => ['label' => 'repeat.password'],
+                'first_options' => ['label' => 'label_new_password'],
+                'second_options' => ['label' => 'label_repeat_password'],
             ]
         );
     }

@@ -12,7 +12,7 @@
             <dt>{{ 'label.id'|trans }}</dt>
             <dd>{{ post.id }}</dd>
             <dt>{{ 'label.date'|trans }}</dt>
-            <dd>{{ post.date|date('d/m/Y') }}</dd>
+            <dd>{{ post.date|format_date('long') }}</dd>
             <dt>{{ 'label.title'|trans }}</dt>
             <dd>{{  post.title }}</dd>
             <dt>{{ 'label.content'|trans }}</dt>
@@ -56,7 +56,7 @@
             <tbody>
             {% for comment in comments %}
                 <tr>
-                    <td>{{ comment.date|date('d/m/Y') }}</td>
+                    <td>{{ comment.date|format_date('long') }}</td>
                     <td>{{ comment.content }}</td>
                     <td>{{ comment.author.login }}</td>
 

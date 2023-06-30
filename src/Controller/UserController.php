@@ -147,24 +147,12 @@ class UserController extends AbstractController
      * @param UserPasswordHasherInterface $passwordHasher
      *
      * @return Response
+     *
+     * @IsGranted("EDIT", subject="user")
      */
     #[Route('/{id}/change_password', name: 'change_password', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     public function changePassword(Request $request, User $user, UserPasswordHasherInterface $passwordHasher): Response
     {
-        $loggedInUser = $this->getUser();
-        // Check if the logged-in user is not null and has the necessary permissions
-        if ($loggedInUser !== $user) {
-            // Handle the case when the user is not authorized to edit this user
-            // Redirect or show an error message
-            // For example:
-            $this->addFlash(
-                'warning',
-                $this->translator->trans('message_action_impossible')
-            );
-
-            return $this->redirectToRoute('post_index');
-        }
-
         $form = $this->createForm(ChangePasswordType::class, $user, ['method' => 'PUT',
             'action' => $this->generateUrl('change_password', ['id' => $user->getId()]),
         ]);

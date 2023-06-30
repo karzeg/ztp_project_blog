@@ -59,6 +59,7 @@ class PostRepository extends ServiceEntityRepository
                 'partial category.{id, title}',
                 'partial tags.{id, title}'
             )
+
             ->join('post.category', 'category')
             ->leftJoin('post.tags', 'tags')
             ->orderBy('post.date', 'DESC');

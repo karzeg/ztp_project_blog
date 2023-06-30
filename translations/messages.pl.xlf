@@ -264,12 +264,20 @@
       </trans-unit>
       <trans-unit id="label_sign-in">
         <source>label_sign-in</source>
-        <target>Zarejestruj</target>
+        <target>Zaloguj</target>
       </trans-unit>
       <trans-unit id="message_action_impossible">
         <source>message_action_impossible</source>
         <target>Niedozwolone działanie</target>
       </trans-unit>
+      <trans-unit id="label.different_passwords">
+                    <source>label.different_passwords</source>
+                    <target>Hasła się różnią</target>
+                  </trans-unit>
+      <trans-unit id="label.different_pass">
+                          <source>label.different_pass</source>
+                          <target>Hasła się różnią</target>
+                        </trans-unit>
     </body>
   </file>
 </xliff>

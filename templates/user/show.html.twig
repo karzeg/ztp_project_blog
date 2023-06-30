@@ -24,9 +24,16 @@
         {% endif %}
 
         <p>
-            <a href="{{ url('post_index') }}" title="{{ 'action.back_to_list'|trans }}">
-                {{ 'action.back_to_list'|trans }}
-            </a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ url('user_index') }}" role="button" title="{{ 'action_back_to_list'|trans }}">
+                    {{ 'action_back_to_list'|trans }}
+                </a>
+
+            {% else %}
+                <a href="{{ url('post_index') }}" role="button" title="{{ 'action_back_to_list'|trans }} ">
+                    {{ 'action_back_to_list'|trans }}
+                </a>
+            {% endif %}
         </p>
     {% else %}
         <p>

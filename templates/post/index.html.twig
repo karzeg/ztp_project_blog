@@ -29,7 +29,7 @@
             {% for post in pagination.items %}
                 <tr>
                     <td>{{ post.id }}</td>
-                    <td>{{ post.date|date('d/m/Y') }}</td>
+                    <td>{{ post.date|format_date('long') }}</td>
                     <td>{{ post.title }}</td>
                     <td>
                         <a href="{{ url('post_index', {'filters.category_id' : post.category.id}) }}" title="{{ post.category.title }}">
